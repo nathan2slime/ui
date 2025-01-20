@@ -2,15 +2,35 @@
 
 import { type HTMLMotionProps, motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
-import { tv } from 'tailwind-variants'
+import { VariantProps, tv } from 'tailwind-variants'
 
-type Props = HTMLMotionProps<'button'> & {}
-
-const variant = tv({
-  base: 'clip-base bg-tsu-love rounded-xl text-tsu-love-foreground font-semibold px-3 w-fit text-base h-10 py-2'
+const style = tv({
+  base: 'clip-base rounded-xl duration-300 transition-colors w-fit text-base',
+  variants: {
+    variant: {
+      default: 'bg-tsu-iris text-tsu-iris-foreground hover:bg-tsu-iris/90',
+      destructive: 'bg-tsu-love text-destructive-foreground hover:bg-tsu-love/90',
+      outline: 'border border-tsu-muted/60 bg-transparent text-tsu-text',
+      secondary: 'bg-tsu-pine text-tsu-pine-foreground hover:bg-tsu-pine/80',
+      ghost: 'hover:bg-accent hover:text-accent-foreground',
+      link: 'text-primary underline-offset-4 hover:underline'
+    },
+    size: {
+      default: 'h-9 px-4 py-2',
+      sm: 'h-8 px-3 text-xs',
+      lg: 'h-10 px-8',
+      icon: 'h-9 w-9 flex justify-center items-center'
+    }
+  },
+  defaultVariants: {
+    variant: 'default',
+    size: 'default'
+  }
 })
 
-export const Button = ({ className, ...props }: Props) => {
+type Props = HTMLMotionProps<'button'> & VariantProps<typeof style>
+
+export const Button = ({ className, size, variant, ...props }: Props) => {
   return (
     <motion.button
       {...props}
@@ -21,7 +41,7 @@ export const Button = ({ className, ...props }: Props) => {
         backfaceVisibility: 'hidden',
         willChange: 'transform'
       }}
-      className={twMerge(variant({ className }))}
+      className={twMerge(style({ className, variant, size }))}
     />
   )
 }
