@@ -1,0 +1,9 @@
+@import url("./themes/base.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @apply tracking-wide;
+}

@@ -1,0 +1,50 @@
+{
+  "name": "@korii/source",
+  "version": "1.0.0",
+  "description": "Korii",
+  "private": true,
+  "scripts": {
+    "start": "turbo run start",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "biome check",
+    "coverage": "turbo run coverage",
+    "test": "turbo run test",
+    "format": "biome format --write",
+    "check": "turbo run build lint test",
+    "version": "changeset version && pnpm format",
+    "release": "pnpm check && changeset publish",
+    "commit": "git-cz"
+  },
+  "keywords": [],
+  "author": "Jhonathan M.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0 <=22.17.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "installConfig": {
+    "hoistingLimits": "none"
+  },
+  "dependencies": {
+    "dotenv-cli": "^7.4.4",
+    "turbo": "^2.3.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@changesets/cli": "^2.27.11",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@types/node": "^22.9.3",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "lefthook": "^1.8.4",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "pnpm@9.15.0"
+}

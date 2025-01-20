@@ -1,0 +1,23 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalPassThroughEnv": ["*"],
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "cache": false,
+      "persistent": true,
+      "env": ["NEXT_PUBLIC_*"],
+      "outputs": [".next/**", "dist/**", "!.next/cache/**"]
+    },
+    "start": {},
+    "publish": {
+      "dependsOn": ["^build"]
+    },
+    "lint": {},
+    "test": {},
+    "coverage": {},
+    "dev": {
+      "persistent": true
+    }
+  }
+}
