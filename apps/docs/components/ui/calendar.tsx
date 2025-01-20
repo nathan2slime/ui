@@ -122,28 +122,34 @@ type DayComponentProps = {
  */
 const Day = ({ isActive, isCurrentDay, isInactive, className, ...props }: DayComponentProps) => {
   const dayStyles = tv({
-    base: 'grid h-10 w-full cursor-pointer place-items-center rounded-md bg-tsu-surface text-tsu-surface-foreground text-center text-base',
+    base: 'grid h-10 w-full cursor-pointer place-items-center rounded-md text-tsu-surface-foreground text-center text-base',
     variants: {
       isCurrentDay: {
         true: 'text-tsu-text'
       },
       isActive: {
-        true: 'text-tsu-pine-foreground font-semibold'
+        true: 'bg-tsu-pine font-bold'
       },
       isInactive: {
-        true: 'opacity-50'
+        true: 'opacity-65 bg-tsu-surface'
       }
     },
     compoundVariants: [
       {
         isCurrentDay: true,
         isActive: false,
-        className: 'font-semibold text-tsu-love'
+        className: 'font-bold text-tsu-love'
+      },
+      {
+        isCurrentDay: false,
+        isActive: false,
+        isInactive: false,
+        className: 'bg-tsu-surface'
       },
       {
         isCurrentDay: true,
         isActive: true,
-        className: 'text-tsu-text'
+        className: 'text-tsu-text bg-tsu-pine'
       }
     ]
   })
@@ -152,7 +158,7 @@ const Day = ({ isActive, isCurrentDay, isInactive, className, ...props }: DayCom
     <motion.div
       initial={{ scale: 1 }}
       animate={{
-        background: isActive ? 'hsla(var(--pine), 0.2)' : 'hsl(var(--surface))'
+        background: isActive ? 'hsl(var(--pine) / 0.8)' : 'hsl(var(--surface))'
       }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       whileTap={{ scale: 0.9 }}
@@ -174,7 +180,7 @@ const ActionButton = (props: ActionButtonProps) => {
       whileHover={{ opacity: 0.9 }}
       whileTap={{ scale: 0.9 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="grid h-full w-[30px] flex-shrink-0 cursor-pointer place-items-center rounded-md bg-tsu-overlay text-tsu-overlay-foreground transition-colors duration-150 hover:text-tsu-foam"
+      className="grid h-full w-[30px] flex-shrink-0 cursor-pointer place-items-center rounded-md bg-tsu-overlay text-tsu-overlay-foreground transition-colors duration-150 hover:text-tsu-iris-foreground"
     />
   )
 }
@@ -294,7 +300,7 @@ const Week = () => {
           key={weekDay}
           className={twMerge(
             'grid h-full w-full cursor-default place-items-center rounded-md bg-tsu-surface text-center text-sm',
-            today === weekDay ? 'font-semibold text-tsu-pine-foreground' : 'text-tsu-text'
+            today === weekDay ? 'font-semibold bg-tsu-pine/40 text-tsu-text' : 'text-tsu-text'
           )}
         >
           {weekDay}

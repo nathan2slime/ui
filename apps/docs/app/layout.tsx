@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: AppChildren) => {
   return (
     <html lang="en">
-      <body className={twMerge('antialiased rose-pine-moon', base.className)}>{children}</body>
+      <body className={twMerge('antialiased rose-pine', base.className)}>{children}</body>
     </html>
   )
 }
