@@ -5,12 +5,12 @@ import { twMerge } from 'tailwind-merge'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const style = tv({
-  base: 'clip-base rounded-xl duration-300 transition-colors w-fit text-base',
+  base: 'clip-base rounded-xl flex justify-center items-center gap-1 duration-300 transition-colors w-fit text-sm',
   variants: {
     variant: {
       default: 'bg-tsu-iris text-tsu-iris-foreground hover:bg-tsu-iris/90',
       destructive: 'bg-tsu-love text-destructive-foreground hover:bg-tsu-love/90',
-      outline: 'border border-tsu-muted/60 bg-transparent text-tsu-text',
+      outline: 'border border-tsu-muted/50 bg-transparent text-tsu-text',
       secondary: 'bg-tsu-pine text-tsu-pine-foreground hover:bg-tsu-pine/80',
       ghost: 'hover:bg-accent hover:text-accent-foreground',
       link: 'text-primary underline-offset-4 hover:underline'
@@ -19,7 +19,7 @@ const style = tv({
       default: 'h-9 px-4 py-2',
       sm: 'h-8 px-3 text-xs',
       lg: 'h-10 px-8',
-      icon: 'h-9 w-9 flex justify-center items-center'
+      icon: 'h-9 w-9'
     }
   },
   defaultVariants: {

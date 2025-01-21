@@ -1,14 +1,14 @@
 :root {
   --base: 240 95% 97%;
-  --base-foreground: 240 5% 3%;
+  --base-foreground: 240 20% 4%;
   --surface: 240 92% 94%;
-  --surface-foreground: 240 8% 6%;
+  --surface-foreground: 210 8% 6%;
   --overlay: 240 80% 88%;
   --overlay-foreground: 240 20% 12%;
   --muted: 240 40% 72%;
-  --muted-foreground: 240 60% 28%;
+  --muted-foreground: 240 35% 13%;
   --subtle: 240 50% 82%;
-  --subtle-foreground: 240 50% 18%;
+  --subtle-foreground: 240 25% 13%;
   --text: 240 20% 12%;
   --text-foreground: 240 80% 88%;
   --love: 339 100% 71%;
@@ -17,7 +17,7 @@
   --gold-foreground: 50 10% 15%;
   --rose: 340 90% 93%;
   --rose-foreground: 340 10% 7%;
-  --pine: 145 50% 74%;
+  --pine: 145 50% 84%;
   --pine-foreground: 145 50% 26%;
   --foam: 180 65% 88%;
   --foam-foreground: 180 35% 12%;
@@ -29,37 +29,4 @@
   --highlight-med-foreground: 240 15% 6%;
   --highlight-high: 240 90% 98%;
   --highlight-high-foreground: 240 10% 2%;
-}
-
-.rose-pine-moon {
-  --base: 240 20% 15%;
-  --base-foreground: 240 80% 85%;
-  --surface: 240 18% 20%;
-  --surface-foreground: 240 82% 80%;
-  --overlay: 240 18% 23%;
-  --overlay-foreground: 240 82% 77%;
-  --muted: 240 9% 47%;
-  --muted-foreground: 240 91% 53%;
-  --subtle: 240 12% 58%;
-  --subtle-foreground: 240 88% 42%;
-  --text: 240 13% 95%;
-  --text-foreground: 240 87% 5%;
-  --love: 339 74% 58%;
-  --love-foreground: 339 100% 94%;
-  --gold: 33 88% 74%;
-  --gold-foreground: 33 12% 26%;
-  --rose: 350 66% 67%;
-  --rose-foreground: 350 34% 33%;
-  --pine: 199 61% 47%;
-  --pine-foreground: 199 44% 9%;
-  --foam: 197 41% 75%;
-  --foam-foreground: 197 59% 25%;
-  --iris: 261 50% 77%;
-  --iris-foreground: 261 50% 23%;
-  --highlight-low: 240 13% 17%;
-  --highlight-low-foreground: 240 87% 83%;
-  --highlight-med: 240 16% 26%;
-  --highlight-med-foreground: 240 84% 74%;
-  --highlight-high: 240 17% 33%;
-  --highlight-high-foreground: 240 83% 67%;
 }
