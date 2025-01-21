@@ -32,6 +32,9 @@
       "complexity": {
         "useOptionalChain": "off"
       },
+      "suspicious": {
+        "noArrayIndexKey": "off"
+      },
       "recommended": true,
       "style": {
         "noNonNullAssertion": "off",
