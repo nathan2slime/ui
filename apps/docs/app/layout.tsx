@@ -9,7 +9,7 @@ import './globals.css'
 const base = localFont({ src: './fonts/ComicNeue.ttf' })
 
 export const metadata: Metadata = {
-  title: 'Kires'
+  title: 'Korii UI',
 }
 
 const RootLayout = ({ children }: AppChildren) => {
