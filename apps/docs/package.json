@@ -14,7 +14,7 @@
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-kawaii": "^1.4.0",
+    "react-kawaii": "^1.5.0",
     "tailwind-merge": "^2.6.0",
     "tailwind-variants": "^0.3.0"
   },

@@ -6,4 +6,14 @@
 
 :root {
   @apply tracking-wide;
+  @apply font-comicNeue;
+  @apply select-none;
+}
+
+* {
+  -webkit-user-drag: none;
+}
+
+body {
+  overflow: hidden;
 }
