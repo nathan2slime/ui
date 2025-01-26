@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: AppChildren) => {
   return (
     <html lang="en">
-      <body className={twMerge('antialiased teste', cuteFont.variable, comicNeue.variable, dancingScript.variable)}>{children}</body>
+      <body className={twMerge('antialiased', cuteFont.variable, comicNeue.variable, dancingScript.variable)}>{children}</body>
     </html>
   )
 }
