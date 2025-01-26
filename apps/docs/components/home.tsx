@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Planet, KawaiiProps } from 'react-kawaii'
+import { KawaiiProps, Planet } from 'react-kawaii'
 
 import { Button } from '~/components/ui/button'
 

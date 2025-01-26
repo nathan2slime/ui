@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Comic_Neue, Dancing_Script, Cute_Font } from 'next/font/google'
+import { Comic_Neue, Cute_Font, Dancing_Script } from 'next/font/google'
 import { twMerge } from 'tailwind-merge'
 
 import { AppChildren } from '~/types'

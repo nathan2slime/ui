@@ -1,9 +1,9 @@
 'use client'
 
 import { ptBR } from 'date-fns/locale'
-import { Astronaut } from 'react-kawaii'
 import { BellRing, Check, Home } from 'lucide-react'
 import { useState } from 'react'
+import { Astronaut } from 'react-kawaii'
 import { twMerge } from 'tailwind-merge'
 
 import { Button } from '~/components/ui/button'
@@ -30,7 +30,7 @@ const Index = () => {
 
   return (
     <div className="w-screen flex gap-3 relative flex-wrap p-4 h-screen bg-tsu-surface">
-      <Astronaut className='absolute top-0' />
+      <Astronaut className="absolute top-0" />
       <Card className={twMerge('w-[380px] h-fit flex-shrink-0')}>
         <CardHeader>
           <CardTitle className="text-tsu-iris-foreground">Notifications</CardTitle>
