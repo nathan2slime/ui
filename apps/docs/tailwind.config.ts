@@ -3,10 +3,16 @@ import type { Config } from 'tailwindcss'
 export default {
   content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
+    fontFamily: {
+      comicNeue: ['var(--font-comic-neue)', 'sans-serif'],
+      dancingScript: ['var(--font-dancing-script)', 'cursive'],
+      cuteFont: ['var(--font-cute-font)', 'sans-serif']
+    },
     colors: {
       tsu: {
         base: 'hsl(var(--base))',
         'base-foreground': 'hsl(var(--base-foreground))',
+        background: 'hsl(var(--background))',
 
         surface: 'hsl(var(--surface))',
         'surface-foreground': 'hsl(var(--surface-foreground))',

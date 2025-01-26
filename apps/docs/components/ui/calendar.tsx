@@ -180,7 +180,7 @@ const ActionButton = (props: ActionButtonProps) => {
       whileHover={{ opacity: 0.9 }}
       whileTap={{ scale: 0.9 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="grid h-full w-[30px] flex-shrink-0 cursor-pointer place-items-center rounded-md bg-tsu-overlay text-tsu-overlay-foreground transition-colors duration-150 hover:text-tsu-foam"
+      className="grid h-full w-[30px] flex-shrink-0 cursor-pointer place-items-center rounded-md bg-tsu-overlay text-tsu-overlay-foreground transition-colors duration-150 hover:text-tsu-iris-foreground"
     />
   )
 }
@@ -204,6 +204,7 @@ const Content = () => {
 
     if (index >= firstDayWeekIndex) {
       const day = index + 1 - firstDayWeekIndex
+
       return {
         date: startOfMinute(setDate(baseDate!, day)),
         month: 'current'
@@ -211,6 +212,7 @@ const Content = () => {
     }
 
     const day = previousMonthDays - firstDayWeekIndex + index + 1
+
     return {
       date: startOfMinute(setDate(previousMonth, day)),
       month: 'previous'

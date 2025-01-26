@@ -5,13 +5,14 @@
   --surface-foreground: 210 8% 6%;
   --overlay: 240 80% 88%;
   --overlay-foreground: 240 20% 12%;
+  --background: 360 100% 100%;
   --muted: 240 40% 72%;
   --muted-foreground: 240 35% 13%;
   --subtle: 240 50% 82%;
   --subtle-foreground: 240 25% 13%;
   --text: 240 20% 12%;
   --text-foreground: 240 80% 88%;
-  --love: 339 100% 71%;
+  /* --love: 339 100% 71%;
   --love-foreground: 330 27% 33%;
   --gold: 50 90% 85%;
   --gold-foreground: 50 10% 15%;
@@ -21,7 +22,19 @@
   --pine-foreground: 145 50% 26%;
   --foam: 180 65% 88%;
   --foam-foreground: 180 35% 12%;
-  --iris: 260 97.25% 82.09%;
+  --iris: 260 97.25% 82.09%; */
+  --love: 339 100% 55%;
+  --love-foreground: 330 35% 30%;
+  --gold: 50 100% 65%;
+  --gold-foreground: 50 20% 15%;
+  --rose: 340 100% 80%;
+  --rose-foreground: 340 20% 5%;
+  --pine: 145 60% 60%;
+  --pine-foreground: 145 60% 20%;
+  --foam: 180 75% 65%;
+  --foam-foreground: 180 45% 10%;
+  --iris: 260 100% 69%;
+
   --iris-foreground: 260 40% 10%;
   --highlight-low: 240 80% 90%;
   --highlight-low-foreground: 240 20% 10%;
@@ -29,4 +42,39 @@
   --highlight-med-foreground: 240 15% 6%;
   --highlight-high: 240 90% 98%;
   --highlight-high-foreground: 240 10% 2%;
+}
+
+
+.teste {
+  --base: 340 80% 98%;
+  --base-foreground: 340 30% 15%;
+  --surface: 340 75% 96%;
+  --surface-foreground: 340 30% 12%;
+  --overlay: 340 70% 94%;
+  --overlay-foreground: 340 40% 20%;
+  --background: 340 90% 98%;
+  --muted: 340 50% 85%;
+  --muted-foreground: 340 45% 20%;
+  --subtle: 340 65% 90%;
+  --subtle-foreground: 340 35% 15%;
+  --text: 340 30% 20%;
+  --text-foreground: 340 80% 85%;
+  --love: 340 95% 70%;
+  --love-foreground: 340 40% 25%;
+  --gold: 50 90% 60%;
+  --gold-foreground: 50 30% 20%;
+  --rose: 340 100% 90%;
+  --rose-foreground: 340 40% 18%;
+  --pine: 160 50% 70%;
+  --pine-foreground: 160 40% 25%;
+  --foam: 190 65% 60%;
+  --foam-foreground: 190 45% 20%;
+  --iris: 260 70% 68%;
+  --iris-foreground: 260 50% 25%;
+  --highlight-low: 340 85% 94%;
+  --highlight-low-foreground: 340 45% 15%;
+  --highlight-med: 340 90% 96%;
+  --highlight-med-foreground: 340 40% 12%;
+  --highlight-high: 340 95% 98%;
+  --highlight-high-foreground: 340 30% 8%;
 }
