@@ -1,0 +1,91 @@
+# Input
+
+The `Input` component provides a styled text field with optional side content, validation states, helper text, and character counting.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Input } from '@nathan3boss/ui/input';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Input placeholder="Enter spell name..." />
+    </ExampleFrame>
+  );
+};
+```
+
+## Helper Text
+
+Use `helperText` and `helperColor` to communicate neutral guidance, confirmations, errors, or warnings below the field.
+
+```jsx preview
+import React from 'react';
+import { Input } from '@nathan3boss/ui/input';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Input
+        helperText="Choose a short and memorable artifact name."
+        helperColor="default"
+        placeholder="Artifact tag..."
+      />
+    </ExampleFrame>
+  );
+};
+```
+
+## Side Content
+
+Use `startContent` and `endContent` for inline visual context such as search icons or validation cues.
+
+```jsx preview
+import React from 'react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Search01Icon } from '@hugeicons/core-free-icons';
+import { Input } from '@nathan3boss/ui/input';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Input
+        placeholder="Search grimoires..."
+        startContent={<HugeiconsIcon color="currentColor" icon={Search01Icon} size={18} />}
+      />
+    </ExampleFrame>
+  );
+};
+```
+
+## Character Count
+
+Passing `max` or `maxLength` to text-like inputs will display the current character count beside the helper area.
+
+```jsx preview
+import React from 'react';
+import { Input } from '@nathan3boss/ui/input';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Input
+        helperText="This field supports up to 40 characters."
+        helperColor="success"
+        max={40}
+        placeholder="Artifact tag..."
+      />
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Input" />

@@ -1,0 +1,112 @@
+# Button
+
+The `Button` component provides a reusable action control with Panda-based styling and a small set of ergonomic variants.
+
+## Usage
+
+Use `children` for the label content and choose a variant that matches the emphasis of the action.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <Button>Save changes</Button>
+    </ExampleFrame>
+  );
+};
+```
+
+## Variants
+
+Use `solid` for primary actions, `outline` for secondary actions, and `ghost` for low-emphasis actions.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame direction="row" gap="12px" wrap>
+      <Button variant="solid">Primary</Button>
+      <Button variant="outline">Secondary</Button>
+      <Button variant="ghost">Tertiary</Button>
+    </ExampleFrame>
+  );
+};
+```
+
+## Sizes
+
+The button supports compact, default, and large sizing through the `size` prop.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame align="center" direction="row" gap="12px" wrap>
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </ExampleFrame>
+  );
+};
+```
+
+## Full Width
+
+Enable `fullWidth` when the button should stretch to match the container width.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Button fullWidth>Create account</Button>
+    </ExampleFrame>
+  );
+};
+```
+
+## Theme Tokens
+
+The component styles are driven by Panda tokens defined in the library theme. Consumers can override the generated CSS variables at the app root or inside a scoped wrapper.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame
+      vars={{
+        '--colors-action-solid-background': '#7c2d12',
+        '--colors-action-solid-background-hover': '#9a3412',
+        '--colors-action-solid-border': '#7c2d12',
+        '--colors-action-solid-border-hover': '#9a3412',
+        '--colors-action-solid-foreground': '#fff7ed',
+        '--radii-full': '18px',
+      }}
+    >
+      <Button>Launch project</Button>
+    </ExampleFrame>
+  );
+};
+```
+
+This gives the library a base theme out of the box while still letting consumers customize tokens without changing component code.
+
+## API
+
+<API moduleName="Button" />

@@ -1,0 +1,44 @@
+# Helper Text
+
+The `HelperText` component is a shared text primitive for default guidance, success feedback, errors, and warnings below fields.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { HelperText } from '@nathan3boss/ui/helper-text';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <HelperText color="success">Selection saved successfully.</HelperText>
+    </ExampleFrame>
+  );
+};
+```
+
+## Colors
+
+Use `default`, `success`, `warning`, and `danger` to match the tone of the surrounding field.
+
+```jsx preview
+import React from 'react';
+import { HelperText } from '@nathan3boss/ui/helper-text';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame direction="column" gap="8px">
+      <HelperText color="default">Choose a safe route for the next quest.</HelperText>
+      <HelperText color="success">Selection saved successfully.</HelperText>
+      <HelperText color="danger">This spell name is already reserved.</HelperText>
+      <HelperText color="warning">This choice may lock advanced spells.</HelperText>
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="HelperText" />

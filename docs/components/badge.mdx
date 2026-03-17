@@ -1,0 +1,46 @@
+# Badge
+
+The `Badge` component highlights short labels such as state, category, or metadata.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Badge } from '@nathan3boss/ui/badge';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <Badge>Featured</Badge>
+    </ExampleFrame>
+  );
+};
+```
+
+## Variants
+
+```jsx preview
+import React from 'react';
+import { Badge } from '@nathan3boss/ui/badge';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame direction="row" gap="12px" wrap>
+      <Badge>Featured</Badge>
+      <Badge variant="solid" color="warning">
+        Artifact
+      </Badge>
+      <Badge variant="outline" color="success">
+        Available
+      </Badge>
+      <Badge color="neutral">Archive</Badge>
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Badge" />

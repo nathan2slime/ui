@@ -1,0 +1,87 @@
+# Select
+
+The `Select` component uses the compound pattern to compose a native select control from reusable parts.
+
+## Usage
+
+Compose the field with `Select`, `Select.Label`, `Select.Control`, `Select.Item`, and `Select.HelperText`.
+
+```jsx preview
+import React from 'react';
+import { Select } from '@nathan3boss/ui/select';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Select>
+        <Select.Label>Spell school</Select.Label>
+        <Select.Control defaultValue="support">
+          <Select.Item value="support">Support</Select.Item>
+          <Select.Item value="offense">Offense</Select.Item>
+          <Select.Item value="utility">Utility</Select.Item>
+        </Select.Control>
+      </Select>
+    </ExampleFrame>
+  );
+};
+```
+
+## Helper Text
+
+The helper area shares the same semantic colors used across the library.
+
+```jsx preview
+import React from 'react';
+import { Select } from '@nathan3boss/ui/select';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Select color="danger" helperColor="danger">
+        <Select.Label>Spell school</Select.Label>
+        <Select.Control defaultValue="support">
+          <Select.Item value="support">Support</Select.Item>
+          <Select.Item value="offense">Offense</Select.Item>
+          <Select.Item value="utility">Utility</Select.Item>
+        </Select.Control>
+        <Select.HelperText>Choose a valid school before continuing.</Select.HelperText>
+      </Select>
+    </ExampleFrame>
+  );
+};
+```
+
+## Side Content
+
+Use `startContent` and `endContent` to add visual context while preserving the native select behavior.
+
+```jsx preview
+import React from 'react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Search01Icon } from '@hugeicons/core-free-icons';
+import { Select } from '@nathan3boss/ui/select';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Select>
+        <Select.Label>Search mode</Select.Label>
+        <Select.Control
+          defaultValue="manual"
+          startContent={<HugeiconsIcon color="currentColor" icon={Search01Icon} size={18} />}
+        >
+          <Select.Item value="manual">Manual</Select.Item>
+          <Select.Item value="automatic">Automatic</Select.Item>
+        </Select.Control>
+      </Select>
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Select" />

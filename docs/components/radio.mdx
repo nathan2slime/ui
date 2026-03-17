@@ -1,0 +1,63 @@
+# Radio
+
+The `Radio` component wraps the native input element with a themed outline and animated dot.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Radio } from '@nathan3boss/ui/radio';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <Radio label="Early access" />
+    </ExampleFrame>
+  );
+};
+```
+
+## Grouping
+
+Share a `name` to allow only one option inside the group to be selected at a time.
+
+```jsx preview
+import React from 'react';
+import { Radio } from '@nathan3boss/ui/radio';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame direction="column" gap="12px">
+      <Radio defaultChecked label="Basic plan" name="plan" />
+      <Radio label="Growth plan" name="plan" />
+      <Radio label="Enterprise plan" name="plan" />
+    </ExampleFrame>
+  );
+};
+```
+
+## Colors
+
+Use `color` to align the checked ring with validation outcomes.
+
+```jsx preview
+import React from 'react';
+import { Radio } from '@nathan3boss/ui/radio';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame direction="column" gap="12px">
+      <Radio color="success" defaultChecked label="Verified selection" />
+      <Radio color="warning" defaultChecked label="Needs review" />
+      <Radio color="danger" defaultChecked label="Action required" />
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Radio" />

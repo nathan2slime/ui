@@ -1,0 +1,149 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Design System" />
+
+# Design System
+
+This page documents the base visual system that powers the component library.
+
+## Principles
+
+- Calm and airy surfaces
+- Soft contrast with clear hierarchy
+- Rounded controls with gentle glow on interaction
+- System tokens first, component tokens second
+
+## Color Tokens
+
+The raw color tokens are generic and reusable across components. Semantic tokens such as `actionSolidBackground` are composed from them.
+
+<div
+  style={{
+    display: 'grid',
+    gap: '16px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+    marginTop: '16px',
+    marginBottom: '24px',
+  }}
+>
+  {[
+    ['brandPrimary', '#47b4eb'],
+    ['brandPrimaryHover', '#3da1d4'],
+    ['brandPrimaryActive', '#338fbc'],
+    ['accentSuccess', '#9dbf9e'],
+    ['accentSuccessSubtle', '#e8f5e9'],
+    ['accentWarning', '#d4af37'],
+    ['surfaceBase', '#fdfdfd'],
+    ['surfaceSubtle', '#f8fafc'],
+    ['borderSubtle', '#d9e7ef'],
+    ['textPrimary', '#2c3e50'],
+  ].map(([name, value]) => (
+    <div
+      key={name}
+      style={{
+        background: '#fff',
+        border: '1px solid #e5edf3',
+        borderRadius: '20px',
+        boxShadow: '0 8px 24px rgba(44, 62, 80, 0.06)',
+        padding: '14px',
+      }}
+    >
+      <div
+        style={{
+          background: value,
+          border: value === '#fdfdfd' || value === '#f8fafc' ? '1px solid #e5edf3' : 'none',
+          borderRadius: '16px',
+          height: '88px',
+          marginBottom: '12px',
+        }}
+      />
+      <div style={{ color: '#2c3e50', fontWeight: 700 }}>{name}</div>
+      <div style={{ color: '#6b7280', fontSize: '13px' }}>{value}</div>
+    </div>
+  ))}
+</div>
+
+## Typography Tokens
+
+<div
+  style={{
+    background: '#fff',
+    border: '1px solid #e5edf3',
+    borderRadius: '24px',
+    boxShadow: '0 8px 24px rgba(44, 62, 80, 0.06)',
+    padding: '24px',
+    marginTop: '16px',
+    marginBottom: '24px',
+  }}
+>
+  <div style={{ color: '#2c3e50', fontFamily: 'Manrope, sans-serif', fontSize: '1.05rem', fontWeight: 700 }}>
+    uiLg / Manrope / 700
+  </div>
+  <div style={{ color: '#2c3e50', fontFamily: 'Manrope, sans-serif', fontSize: '0.95rem', fontWeight: 700, marginTop: '12px' }}>
+    uiMd / Manrope / 700
+  </div>
+  <div style={{ color: '#2c3e50', fontFamily: 'Manrope, sans-serif', fontSize: '0.875rem', fontWeight: 700, marginTop: '12px' }}>
+    uiSm / Manrope / 700
+  </div>
+</div>
+
+## Sizing And Spacing Tokens
+
+<div
+  style={{
+    display: 'grid',
+    gap: '16px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    marginTop: '16px',
+    marginBottom: '24px',
+  }}
+>
+  <div style={{ background: '#fff', border: '1px solid #e5edf3', borderRadius: '20px', padding: '18px' }}>
+    <div style={{ color: '#2c3e50', fontWeight: 700, marginBottom: '10px' }}>Control heights</div>
+    <div style={{ color: '#6b7280', fontSize: '14px' }}>controlSm: 2.5rem</div>
+    <div style={{ color: '#6b7280', fontSize: '14px' }}>controlMd: 3rem</div>
+    <div style={{ color: '#6b7280', fontSize: '14px' }}>controlLg: 3.5rem</div>
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5edf3', borderRadius: '20px', padding: '18px' }}>
+    <div style={{ color: '#2c3e50', fontWeight: 700, marginBottom: '10px' }}>Inline spacing</div>
+    <div style={{ color: '#6b7280', fontSize: '14px' }}>insetSm: 0.8rem</div>
+    <div style={{ color: '#6b7280', fontSize: '14px' }}>insetMd: 1.25rem</div>
+    <div style={{ color: '#6b7280', fontSize: '14px' }}>insetLg: 1.5rem</div>
+  </div>
+</div>
+
+## Semantic Token Usage
+
+Use raw tokens for foundations and semantic tokens for component intent.
+
+```ts
+colors: {
+  brandPrimary: { value: "#47b4eb" },
+}
+
+semanticTokens: {
+  colors: {
+    actionSolidBackground: { value: "{colors.brandPrimary}" },
+  },
+}
+```
+
+This keeps the theme reusable while allowing components to reference intent-based aliases.
+
+## Shared Field Semantics
+
+Helper messaging now follows a shared semantic scale across field components and the standalone `HelperText` primitive:
+
+- `default`: neutral guidance
+- `success`: positive confirmation
+- `error`: blocking or invalid state
+- `warning`: cautionary guidance
+
+This keeps `Input`, `Select`, `Textarea`, and `HelperText` aligned on the same tone language.
+
+## Motion
+
+Micro-interactions should stay soft and readable. Current components favor short entrance motion, subtle glow, and lightweight easing instead of spring-heavy or bouncy behavior.
+
+- Tooltip content uses a short fade-and-rise entrance animation
+- Focus feedback relies on glow and border emphasis rather than large scale transforms

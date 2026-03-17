@@ -1,0 +1,57 @@
+# Tabs
+
+The `Tabs` component organizes related content into accessible, switchable panels.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Tabs } from '@nathan3boss/ui/tabs';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="400px">
+      <Tabs defaultValue="account">
+        <Tabs.List>
+          <Tabs.Trigger value="account">Account</Tabs.Trigger>
+          <Tabs.Trigger value="password">Password</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="account">Make changes to your account here.</Tabs.Content>
+        <Tabs.Content value="password">Change your password here.</Tabs.Content>
+      </Tabs>
+    </ExampleFrame>
+  );
+};
+```
+
+## States
+
+```jsx preview
+import React from 'react';
+import { Tabs } from '@nathan3boss/ui/tabs';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="400px">
+      <Tabs defaultValue="account">
+        <Tabs.List>
+          <Tabs.Trigger value="account">Account</Tabs.Trigger>
+          <Tabs.Trigger value="password">Password</Tabs.Trigger>
+          <Tabs.Trigger value="notifications">Notifications</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="account">Make changes to your account here.</Tabs.Content>
+        <Tabs.Content value="password">Change your password here.</Tabs.Content>
+        <Tabs.Content value="notifications">
+          Adjust alerts, updates, and journey reports here.
+        </Tabs.Content>
+      </Tabs>
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Tabs" />

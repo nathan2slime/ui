@@ -1,0 +1,12 @@
+@layer reset, base, tokens, recipes, utilities;
+
+@layer base {
+  @keyframes ui-spinner-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -1,0 +1,95 @@
+# Card
+
+The `Card` component uses the compound pattern to build rich content layouts for feature highlights, summaries, and promotional surfaces.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Card } from '@nathan3boss/ui/card';
+import { ExampleFrame, ExampleSurface } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="420px">
+      <Card interactive>
+        <ExampleSurface minHeight="260px" surface="soft" />
+        <Card.Content>
+          <Card.Header>
+            <Card.Title>Journey of Reflection</Card.Title>
+            <Card.Action>Recommended Log</Card.Action>
+          </Card.Header>
+          <Card.Description>
+            A deep dive into the 10-year journey of the hero party and the weight of time.
+          </Card.Description>
+        </Card.Content>
+      </Card>
+    </ExampleFrame>
+  );
+};
+```
+
+## Horizontal Layout
+
+Use `orientation="horizontal"` for denser cards that place media beside the content.
+
+```jsx preview
+import React from 'react';
+import { Card } from '@nathan3boss/ui/card';
+import { ExampleFrame, ExampleSurface } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="560px">
+      <Card interactive orientation="horizontal">
+        <ExampleSurface minHeight="100%" minWidth="180px" surface="subtle" />
+        <Card.Content>
+          <Card.Header>
+            <Card.Title as="h4">Spellbook: Vol 12</Card.Title>
+          </Card.Header>
+          <Card.Description>
+            A collection of minor folk magic spells from the Central Lands.
+          </Card.Description>
+        </Card.Content>
+      </Card>
+    </ExampleFrame>
+  );
+};
+```
+
+## Accent Tone
+
+Use `tone="accent"` for promotional or highlight surfaces that need stronger emphasis.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { Card } from '@nathan3boss/ui/card';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="420px">
+      <Card interactive tone="accent">
+        <Card.Content>
+          <Card.Header>
+            <Card.Title>The Aureole Expedition</Card.Title>
+            <Card.Action>Seasonal Update</Card.Action>
+          </Card.Header>
+          <Card.Description>
+            "It is a place where one can speak with the spirits of the dead."
+          </Card.Description>
+          <Card.Footer>
+            <span>Expedition log</span>
+            <Button color="default" variant="outline">Join Log</Button>
+          </Card.Footer>
+        </Card.Content>
+      </Card>
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Card" />

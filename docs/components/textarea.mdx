@@ -1,0 +1,66 @@
+# Textarea
+
+The `Textarea` component provides a styled multiline field with optional label, helper text, and character counting.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Textarea } from '@nathan3boss/ui/textarea';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Textarea label="Magic Journal" placeholder="Write your notes here..." />
+    </ExampleFrame>
+  );
+};
+```
+
+## Helper Text
+
+```jsx preview
+import React from 'react';
+import { Textarea } from '@nathan3boss/ui/textarea';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Textarea
+        helperText="Record your observations of the passage of time."
+        helperColor="default"
+        label="Magic Journal"
+        placeholder="Write your notes here..."
+      />
+    </ExampleFrame>
+  );
+};
+```
+
+## Character Count
+
+```jsx preview
+import React from 'react';
+import { Textarea } from '@nathan3boss/ui/textarea';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame width="320px">
+      <Textarea
+        helperText="Keep this note concise."
+        helperColor="success"
+        label="Magic Journal"
+        max={120}
+        placeholder="Write your notes here..."
+      />
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Textarea" />

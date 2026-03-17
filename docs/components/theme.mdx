@@ -1,0 +1,133 @@
+# Theme
+
+The `UiThemeProvider` scopes light, dark, and custom theme overrides to a subtree of the UI library.
+
+## Usage
+
+Wrap the components you want to theme and choose `light`, `dark`, or `system`.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { Card } from '@nathan3boss/ui/card';
+import { UiThemeProvider } from '@nathan3boss/ui/theme';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame maxWidth="420px">
+      <UiThemeProvider theme="dark">
+        <Card>
+          <Card.Content>
+            <Card.Header>
+              <Card.Title>Dark mode</Card.Title>
+            </Card.Header>
+            <Card.Description>
+              Theme variables are scoped to this subtree only.
+            </Card.Description>
+            <ExampleFrame padding="16px 0 0">
+              <Button>Inspect theme</Button>
+            </ExampleFrame>
+          </Card.Content>
+        </Card>
+      </UiThemeProvider>
+    </ExampleFrame>
+  );
+};
+```
+
+## Custom Themes
+
+Register a named theme through `themes` and activate it with `theme`.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { UiThemeProvider } from '@nathan3boss/ui/theme';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <UiThemeProvider
+        theme="ocean"
+        themes={{
+          ocean: {
+            colors: {
+              brandPrimary: '#0ea5e9',
+              brandPrimaryActive: '#0369a1',
+              brandPrimaryHover: '#0284c7',
+              brandPrimaryStrong: '#075985',
+              inputBackground: '#f0f9ff',
+              inputBorder: '#7dd3fc',
+              surfaceAccentStrong: '#075985',
+              surfaceBase: '#f8fdff',
+              surfaceSubtle: '#e0f2fe',
+              textPrimary: '#0f2940',
+            },
+          },
+        }}
+      >
+        <Button>Ocean theme</Button>
+      </UiThemeProvider>
+    </ExampleFrame>
+  );
+};
+```
+
+## Token Overrides
+
+Use `tokens` for one-off overrides without registering a new theme name.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { UiThemeProvider } from '@nathan3boss/ui/theme';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <UiThemeProvider
+        tokens={{
+          brandPrimary: '#7c3aed',
+          brandPrimaryActive: '#6d28d9',
+          brandPrimaryHover: '#7e22ce',
+          brandPrimaryStrong: '#581c87',
+          surfaceAccentStrong: '#581c87',
+        }}
+      >
+        <Button>Custom accent</Button>
+      </UiThemeProvider>
+    </ExampleFrame>
+  );
+};
+```
+
+## Reading The Theme
+
+Use `useUiTheme` when consumers need access to the resolved theme name or the
+merged token set inside the provider subtree.
+
+```jsx preview
+import React from 'react';
+import { Badge } from '@nathan3boss/ui/badge';
+import { UiThemeProvider, useUiTheme } from '@nathan3boss/ui/theme';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+const ThemeStatus = () => {
+  const { resolvedTheme } = useUiTheme();
+
+  return <Badge variant="outline">{resolvedTheme}</Badge>;
+};
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <UiThemeProvider theme="dark">
+        <ThemeStatus />
+      </UiThemeProvider>
+    </ExampleFrame>
+  );
+};
+```

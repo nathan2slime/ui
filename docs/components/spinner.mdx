@@ -1,0 +1,71 @@
+# Spinner
+
+The `Spinner` component renders a compact loading indicator that can be placed inline with actions or content placeholders.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Spinner } from '@nathan3boss/ui/spinner';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <Spinner />
+    </ExampleFrame>
+  );
+};
+```
+
+## Variants
+
+Use the `variant` prop to swap the indicator stroke, making the spinner visible on light or dark surfaces.
+
+```jsx preview
+import React from 'react';
+import { Spinner } from '@nathan3boss/ui/spinner';
+import { ExampleFrame, ExampleSurface } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame align="center" direction="row" gap="16px">
+      <Spinner variant="primary" />
+      <Spinner variant="neutral" />
+      <ExampleSurface surface="contrast">
+        <ExampleFrame direction="row" align="center" justify="center">
+          <Spinner variant="contrast" />
+        </ExampleFrame>
+      </ExampleSurface>
+    </ExampleFrame>
+  );
+};
+```
+
+## Sizes
+
+Pick between `sm`, `md`, or `lg` depending on the container.
+
+```jsx preview
+import React from 'react';
+import { Spinner } from '@nathan3boss/ui/spinner';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame align="center" direction="row" gap="16px">
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
+    </ExampleFrame>
+  );
+};
+```
+
+## Accessibility
+
+The component renders an `<output>` element with the ARIA `status` role. Override the live region label with `aria-label` when the default "Loading" copy does not match the use case.
+
+## API
+
+<API moduleName="Spinner" />

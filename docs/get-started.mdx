@@ -1,0 +1,94 @@
+---
+overview: false
+title: Get Started
+---
+
+# @nathan3boss/ui
+
+Composable React components for forms, navigation, feedback, and content surfaces.
+
+## Installation
+
+```bash
+pnpm add @nathan3boss/ui react react-dom
+```
+
+## Quick Start
+
+```tsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { Card } from '@nathan3boss/ui/card';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame maxWidth="420px">
+      <Card>
+        <Card.Content>
+          <Card.Header>
+            <Card.Title>Ship faster</Card.Title>
+          </Card.Header>
+          <Card.Description>
+            Start with accessible primitives and consistent styling tokens.
+          </Card.Description>
+          <ExampleFrame padding="16px 0 0">
+            <Button>Open workspace</Button>
+          </ExampleFrame>
+        </Card.Content>
+      </Card>
+    </ExampleFrame>
+  );
+};
+```
+
+## What is included
+
+- Form controls: `Input`, `Textarea`, `Select`, `Radio`, `Switch`, `Label`, `HelperText`
+- Actions and feedback: `Button`, `Badge`, `Spinner`, `Tooltip`
+- Layout and content: `Card`, `Card.Header`, `Card.Content`, `Card.Footer`, `Card.Title`, `Card.Description`, `Typography`
+- Navigation: `Tabs`, `Tabs.List`, `Tabs.Trigger`, `Tabs.Content`
+- Theming: `UiThemeProvider`, `useUiTheme`
+
+## Import patterns
+
+Import each component from its public subpath export:
+
+```tsx
+import { Button } from '@nathan3boss/ui/button';
+import { Input } from '@nathan3boss/ui/input';
+import { Tabs } from '@nathan3boss/ui/tabs';
+```
+
+Use the dedicated theme export for theming APIs:
+
+```tsx
+import { UiThemeProvider, useUiTheme } from '@nathan3boss/ui/theme';
+```
+
+The package does not expose a catch-all component API from `@nathan3boss/ui`.
+Use only the public exports declared in `package.json`:
+
+```tsx
+import '@nathan3boss/ui/styles';
+
+import { Badge } from '@nathan3boss/ui/badge';
+import { Button } from '@nathan3boss/ui/button';
+import { Card } from '@nathan3boss/ui/card';
+import { HelperText } from '@nathan3boss/ui/helper-text';
+import { Input } from '@nathan3boss/ui/input';
+import { Label } from '@nathan3boss/ui/label';
+import { Radio } from '@nathan3boss/ui/radio';
+import { Select } from '@nathan3boss/ui/select';
+import { Spinner } from '@nathan3boss/ui/spinner';
+import { Switch } from '@nathan3boss/ui/switch';
+import { Tabs } from '@nathan3boss/ui/tabs';
+import { UiThemeProvider } from '@nathan3boss/ui/theme';
+import { Textarea } from '@nathan3boss/ui/textarea';
+import { Tooltip } from '@nathan3boss/ui/tooltip';
+import { Typography } from '@nathan3boss/ui/typography';
+```
+
+## Explore the docs
+
+Each component page includes live examples, usage guidance, and generated API references. Start with `button`, `input`, `select`, or `card` if you want the most common building blocks first.

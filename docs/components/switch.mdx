@@ -1,0 +1,65 @@
+# Switch
+
+The `Switch` component exposes an accessible toggle control backed by a native checkbox and Panda tokens.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Switch } from '@nathan3boss/ui/switch';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <Switch label="Enable notifications" />
+    </ExampleFrame>
+  );
+};
+```
+
+## Colors
+
+Use the `color` prop to align the on-state color with success, warning, or danger semantics.
+
+```jsx preview
+import React from 'react';
+import { Switch } from '@nathan3boss/ui/switch';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame direction="column" gap="16px">
+      <Switch color="success" label="Verified contact" defaultChecked />
+      <Switch color="warning" label="Needs review" defaultChecked />
+      <Switch color="danger" label="Blocked access" defaultChecked />
+    </ExampleFrame>
+  );
+};
+```
+
+## Label Placement
+
+Flip the label order with `labelPlacement="start"` when the toggle should follow the text.
+
+```jsx preview
+import React from 'react';
+import { Switch } from '@nathan3boss/ui/switch';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame>
+      <Switch
+        defaultChecked
+        label="Show label before the toggle"
+        labelPlacement="start"
+      />
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Switch" />

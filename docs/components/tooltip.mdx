@@ -1,0 +1,49 @@
+# Tooltip
+
+The `Tooltip` component reveals short contextual guidance on hover or focus.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Tooltip } from '@nathan3boss/ui/tooltip';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame padding="20px" align="center" direction="row" justify="center" minHeight="240px">
+      <Tooltip>
+        <Tooltip.Trigger>
+          <span>Hover me</span>
+        </Tooltip.Trigger>
+        <Tooltip.Content>This spell has a delayed cast time.</Tooltip.Content>
+      </Tooltip>
+    </ExampleFrame>
+  );
+};
+```
+
+## Compound Usage
+
+```jsx preview
+import React from 'react';
+import { Tooltip } from '@nathan3boss/ui/tooltip';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame padding="20px" align="center" direction="row" justify="center" minHeight="240px">
+      <Tooltip placement="right">
+        <Tooltip.Trigger>
+          <span>Inspect</span>
+        </Tooltip.Trigger>
+        <Tooltip.Content>Ancient magic reacts differently at twilight.</Tooltip.Content>
+      </Tooltip>
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Tooltip" />

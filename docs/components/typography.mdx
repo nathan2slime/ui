@@ -1,0 +1,51 @@
+# Typography
+
+The `Typography` component exposes the type scale from the design reference with semantic defaults and a lightweight polymorphic API.
+
+## Usage
+
+```jsx preview
+import React from 'react';
+import { Typography } from '@nathan3boss/ui/typography';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return ( 
+    <ExampleFrame direction="column" gap="12px">
+      <Typography variant="display">The Journey Endures</Typography>
+    </ExampleFrame>
+  );
+};
+```
+
+## Type Scale
+
+```jsx preview
+import React from 'react';
+import { Typography } from '@nathan3boss/ui/typography';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => {
+  return (
+    <ExampleFrame direction="column" gap="12px">
+      <Typography variant="display">The Journey Endures</Typography>
+      <Typography variant="heading-2">A Decade of Adventure</Typography>
+      <Typography variant="heading-3">Memories of the Hero Party</Typography>
+      <Typography variant="heading-4">Lvl. 80</Typography>
+      <Typography variant="heading-5">Grimoire</Typography>
+      <Typography variant="heading-6">Artifact</Typography>
+      <Typography variant="body">
+        It&apos;s just a hobby. But I wanted to understand humans better.
+      </Typography>
+      <Typography variant="small">
+        Historical record: 80 years since the journey began.
+      </Typography>
+      <Typography variant="caption">Mana Levels: Critical Threshold</Typography>
+    </ExampleFrame>
+  );
+};
+```
+
+## API
+
+<API moduleName="Typography" />
