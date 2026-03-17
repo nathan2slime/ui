@@ -16,6 +16,10 @@ const getAbsolutePath = (value: string): string => {
   );
 };
 
+const storybookRootDirectory = resolve(
+  fileURLToPath(new URL('.', import.meta.url)),
+);
+
 const config: StorybookConfig = {
   stories: [
     '../stories/**/*.mdx',
@@ -31,6 +35,19 @@ const config: StorybookConfig = {
   framework: {
     name: 'storybook-react-rsbuild',
     options: {},
+  },
+  rsbuildFinal: async (config) => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          '@': resolve(storybookRootDirectory, '../src'),
+          'styled-system': resolve(storybookRootDirectory, '../styled-system'),
+        },
+      },
+    };
   },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
