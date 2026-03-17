@@ -92,6 +92,11 @@ export const mapStudentCardData = (input: StudentApiResponse): StudentCardData =
 
 - `pnpm run build` - Build the library for production
 - `pnpm run dev` - Turn on watch mode, watch for changes and rebuild the library
+- `git commit -m "<message>"` - Create a commit with a message
+
+## Git Rules
+
+- Commit messages must follow the Conventional Commits specification (for example: `feat: ...`, `fix: ...`, `chore: ...`).
 
 ## Docs
 
@@ -102,6 +107,23 @@ export const mapStudentCardData = (input: StudentApiResponse): StudentCardData =
 - Rstest: https://rstest.rs/llms.txt
 
 ## Tools
+
+### Notifications (pygmy)
+
+- Use `pygmy` to notify the user via Telegram. Messages are Markdown and are converted to Telegram HTML.
+- Use notifications when the user says "ping me", "notify me", or "let me know when done".
+- Use notifications when completing a long-running task while the user might be away.
+- Use notifications when blocked and user input is required.
+- Reuse a short, descriptive topic name chosen at the start of the session for all related notifications.
+- Do not notify for every small step; only send meaningful milestones or blockers, or when the user explicitly asks.
+- Usage:
+
+```bash
+pygmy --topic "<topic>" "<message>"
+pygmy --topic "<topic>" --stdin <<'EOF'
+<long message>
+EOF
+```
 
 ### Biome
 
