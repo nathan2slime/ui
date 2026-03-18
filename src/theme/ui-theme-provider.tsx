@@ -32,7 +32,7 @@ export const UiThemeProvider = ({
   themes,
   tokens,
 }: UiThemeProviderProps) => {
-  const systemTheme = useSystemTheme();
+  const systemTheme = useSystemTheme(theme === 'system');
   const resolvedTheme = getResolvedThemeName(theme, systemTheme);
 
   const resolvedTokens = useMemo(() => {

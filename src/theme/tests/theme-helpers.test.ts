@@ -15,16 +15,40 @@ const withMockedMatchMedia = (
   callback: VoidFunction,
 ) => {
   const originalMatchMedia = window.matchMedia;
-  window.matchMedia = matchMedia;
+  Object.defineProperty(window, 'matchMedia', {
+    configurable: true,
+    value: matchMedia,
+  });
 
   try {
     callback();
   } finally {
-    window.matchMedia = originalMatchMedia;
+    Object.defineProperty(window, 'matchMedia', {
+      configurable: true,
+      value: originalMatchMedia,
+    });
   }
 };
 
 describe('theme-helpers', () => {
+  test('falls back to light when matchMedia is unavailable', async () => {
+    const originalMatchMedia = window.matchMedia;
+
+    Object.defineProperty(window, 'matchMedia', {
+      configurable: true,
+      value: undefined,
+    });
+
+    try {
+      expect(resolveSystemTheme()).toBe('light');
+    } finally {
+      Object.defineProperty(window, 'matchMedia', {
+        configurable: true,
+        value: originalMatchMedia,
+      });
+    }
+  });
+
   test('resolves the active built-in theme from the browser preference', async () => {
     withMockedMatchMedia(
       () => ({

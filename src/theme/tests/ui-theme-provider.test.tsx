@@ -6,6 +6,7 @@ import { Button } from '@/components/button';
 import { UiThemeProvider, useUiTheme } from '@/theme';
 
 type MatchMediaController = {
+  listenerCount: () => number;
   restore: VoidFunction;
   setMatches: (matches: boolean) => void;
 };
@@ -57,6 +58,7 @@ const mockMatchMedia = (initialMatches: boolean): MatchMediaController => {
   window.matchMedia = () => mediaQueryList;
 
   return {
+    listenerCount: () => listeners.size,
     restore: () => {
       window.matchMedia = originalMatchMedia;
       listeners.clear();
@@ -139,6 +141,8 @@ describe('UiThemeProvider', () => {
   });
 
   test('applies custom theme tokens and wrapper props', async () => {
+    const matchMediaController = mockMatchMedia(true);
+
     render(
       <UiThemeProvider
         className="theme-shell"
@@ -180,6 +184,10 @@ describe('UiThemeProvider', () => {
       '--colors-action-solid-success-background': '#4d7c0f',
       isolation: 'isolate',
     });
+
+    expect(matchMediaController.listenerCount()).toBe(0);
+
+    matchMediaController.restore();
   });
 
   test('updates the resolved theme when the system preference changes', async () => {

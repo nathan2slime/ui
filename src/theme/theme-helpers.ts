@@ -17,7 +17,10 @@ const camelToKebabCase = (value: string) => {
 };
 
 export const resolveSystemTheme = (): UiBuiltinThemeName => {
-  if (typeof window === 'undefined') {
+  if (
+    typeof window === 'undefined' ||
+    typeof window.matchMedia !== 'function'
+  ) {
     return 'light';
   }
 
@@ -47,10 +50,6 @@ export const getThemeStyle = (tokens: UiThemeColorTokens): ThemeStyle => {
     }
 
     styles[`--colors-${camelToKebabCase(token)}`] = value;
-
-    if (token === 'focusRingColor') {
-      styles['--colors-focus-ring-color'] = value;
-    }
 
     return styles;
   }, {});
