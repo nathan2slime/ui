@@ -11,6 +11,7 @@
 - [components/radio](modules/components_radio.md)
 - [components/select](modules/components_select.md)
 - [components/spinner](modules/components_spinner.md)
+- [components/stepper](modules/components_stepper.md)
 - [components/switch](modules/components_switch.md)
 - [components/tabs](modules/components_tabs.md)
 - [components/textarea](modules/components_textarea.md)

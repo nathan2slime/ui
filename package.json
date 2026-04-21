@@ -59,6 +59,11 @@
       "import": "./dist/spinner.js",
       "default": "./dist/spinner.js"
     },
+    "./stepper": {
+      "types": "./dist/components/stepper/index.d.ts",
+      "import": "./dist/stepper.js",
+      "default": "./dist/stepper.js"
+    },
     "./styles": "./dist/index.css",
     "./tabs": {
       "types": "./dist/components/tabs/index.d.ts",

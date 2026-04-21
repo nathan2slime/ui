@@ -1,6 +1,11 @@
 import type { ChangeEventHandler, Dispatch, SetStateAction } from 'react';
 
 import type { InputProps } from '@/types/input';
+import type {
+  StepperItemProps,
+  StepperOrientation,
+  StepperRootProps,
+} from '@/types/stepper';
 import type { TabsTriggerProps } from '@/types/tabs';
 import type { TextareaProps } from '@/types/textarea';
 import type { TooltipTriggerProps } from '@/types/tooltip';
@@ -90,6 +95,72 @@ export type UseTabsTriggerHandlersReturn = {
    * Keyboard handler that supports roving tab navigation.
    */
   handleKeyDown: NonNullable<TabsTriggerProps['onKeyDown']>;
+};
+
+/**
+ * Dependencies consumed by `useStepperState`.
+ */
+export type UseStepperStateParams = Pick<
+  StepperRootProps,
+  'defaultValue' | 'onValueChange' | 'value'
+>;
+
+/**
+ * Value and updater produced by `useStepperState`.
+ */
+export type UseStepperStateReturn = {
+  /**
+   * Currently active step value.
+   */
+  currentValue: string | undefined;
+  /**
+   * Updates the current step while respecting controlled mode.
+   */
+  setCurrentValue: (value: string) => void;
+};
+
+/**
+ * Dependencies consumed by `useStepperItemHandlers`.
+ */
+export type UseStepperItemHandlersParams = {
+  /**
+   * Prevents activation and keyboard navigation when true.
+   */
+  disabled: boolean;
+  /**
+   * Consumer click handler merged into the returned step handler.
+   */
+  onClick: StepperItemProps['onClick'];
+  /**
+   * Consumer keyboard handler merged into the returned step handler.
+   */
+  onKeyDown: StepperItemProps['onKeyDown'];
+  /**
+   * Shared callback used to activate a step value.
+   */
+  onValueChange: (value: string) => void;
+  /**
+   * Orientation that decides which arrow keys advance or rewind focus.
+   */
+  orientation: StepperOrientation;
+  /**
+   * Value represented by the current step.
+   */
+  value: string;
+};
+
+/**
+ * Memoized handlers returned by `useStepperItemHandlers`.
+ */
+export type UseStepperItemHandlersReturn = {
+  /**
+   * Click handler that merges consumer behavior with step activation.
+   */
+  handleClick: NonNullable<StepperItemProps['onClick']>;
+  /**
+   * Keyboard handler that supports roving step navigation.
+   */
+  handleKeyDown: NonNullable<StepperItemProps['onKeyDown']>;
 };
 
 /**
