@@ -45,7 +45,7 @@ export const stepperItemWrapperStyles = cva({
         alignItems: 'center',
         display: 'grid',
         flex: '1 1 0',
-        gridTemplateColumns: 'minmax(0,1fr) minmax(1.5rem,1fr)',
+        gridTemplateColumns: 'minmax(0,1fr) clamp(1.5rem, 6vw, 3rem)',
       },
       vertical: {
         display: 'grid',
@@ -399,8 +399,8 @@ export const stepperSeparatorStyles = cva({
     orientation: {
       horizontal: {
         height: '2px',
-        marginInline: '0.75rem',
-        width: '100%',
+        justifySelf: 'center',
+        width: 'calc(100% - 1rem)',
       },
       vertical: {
         height: '1.5rem',
