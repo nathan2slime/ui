@@ -15,6 +15,7 @@ export default defineConfig({
       radio: ['./src/components/radio/index.ts'],
       select: ['./src/components/select/index.ts'],
       spinner: ['./src/components/spinner/index.ts'],
+      stepper: ['./src/components/stepper/index.ts'],
       switch: ['./src/components/switch/index.ts'],
       tabs: ['./src/components/tabs/index.ts'],
       textarea: ['./src/components/textarea/index.ts'],
