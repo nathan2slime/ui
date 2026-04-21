@@ -45,11 +45,14 @@ export const StepperList = ({
   const items = childArray.filter(isStepperItemElement);
   const firstEnabledValue = items.find((item) => !item.props.disabled)?.props
     .value;
-  const selectedValue = currentValue ?? firstEnabledValue;
-  const activeIndex =
-    selectedValue === undefined
-      ? -1
-      : items.findIndex((item) => item.props.value === selectedValue);
+  const selectedValue =
+    currentValue !== undefined &&
+    items.some((item) => item.props.value === currentValue)
+      ? currentValue
+      : firstEnabledValue;
+  const activeIndex = items.findIndex(
+    (item) => item.props.value === selectedValue,
+  );
   let itemIndex = -1;
 
   return (

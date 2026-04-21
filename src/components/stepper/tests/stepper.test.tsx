@@ -123,6 +123,44 @@ describe('Stepper', () => {
     );
   });
 
+  test('falls back to the first enabled step when the current value is invalid', async () => {
+    cleanup();
+
+    render(
+      <Stepper.Root value="missing-step">
+        <Stepper.List>
+          <Stepper.Item disabled value="account">
+            <Stepper.Indicator />
+            <Stepper.Title>Account</Stepper.Title>
+            <Stepper.Separator />
+          </Stepper.Item>
+          <Stepper.Item value="shipping">
+            <Stepper.Indicator />
+            <Stepper.Title>Shipping</Stepper.Title>
+            <Stepper.Separator />
+          </Stepper.Item>
+          <Stepper.Item value="payment">
+            <Stepper.Indicator />
+            <Stepper.Title>Payment</Stepper.Title>
+          </Stepper.Item>
+        </Stepper.List>
+      </Stepper.Root>,
+    );
+
+    expect(screen.getByRole('button', { name: /Shipping/i })).toHaveAttribute(
+      'aria-current',
+      'step',
+    );
+    expect(screen.getByRole('button', { name: /Shipping/i })).toHaveAttribute(
+      'tabindex',
+      '0',
+    );
+    expect(screen.getByRole('button', { name: /Payment/i })).toHaveAttribute(
+      'tabindex',
+      '-1',
+    );
+  });
+
   test('supports horizontal keyboard navigation and skips disabled items', async () => {
     cleanup();
 
