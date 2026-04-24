@@ -1,17 +1,16 @@
-import { useMemo } from 'react';
 import { cx } from 'styled-system/css';
 
-import { CardContext } from '@/components/card/card.context';
-import { cardRootStyles } from '@/components/card/card.styles';
-import type { CardRootProps } from '@/types/card';
+import { cardStyles } from '@/components/card/card.styles';
+import type { CardProps } from '@/types/card';
 
 /**
- * Provides layout and visual styling for card compound parts.
+ * Renders a simple card surface for arbitrary content.
  *
  * @example
  * ```tsx
- * <Card>
- *   <Card.Content>Content</Card.Content>
+ * <Card interactive>
+ *   <h3>Ship faster</h3>
+ *   <p>Start with accessible primitives and consistent styling tokens.</p>
  * </Card>
  * ```
  */
@@ -19,32 +18,21 @@ export const CardRoot = ({
   children,
   className,
   interactive = false,
-  orientation = 'vertical',
   tone = 'default',
-}: CardRootProps) => {
-  const contextValue = useMemo(
-    () => ({
-      interactive,
-      orientation,
-      tone,
-    }),
-    [interactive, orientation, tone],
-  );
-
+  ...props
+}: CardProps) => {
   return (
-    <CardContext.Provider value={contextValue}>
-      <article
-        className={cx(
-          cardRootStyles({
-            interactive,
-            orientation,
-            tone,
-          }),
-          className,
-        )}
-      >
-        {children}
-      </article>
-    </CardContext.Provider>
+    <div
+      {...props}
+      className={cx(
+        cardStyles({
+          interactive,
+          tone,
+        }),
+        className,
+      )}
+    >
+      {children}
+    </div>
   );
 };

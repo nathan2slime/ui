@@ -1,6 +1,6 @@
 # Card
 
-The `Card` component uses the compound pattern to build rich content layouts for feature highlights, summaries, and promotional surfaces.
+The `Card` component is a lightweight surface for grouping arbitrary content. It keeps the styling opinionated and leaves the internal layout up to you.
 
 ## Usage
 
@@ -13,16 +13,16 @@ export default () => {
   return (
     <ExampleFrame width="420px">
       <Card interactive>
-        <ExampleSurface minHeight="260px" surface="soft" />
-        <Card.Content>
-          <Card.Header>
-            <Card.Title>Journey of Reflection</Card.Title>
-            <Card.Action>Recommended Log</Card.Action>
-          </Card.Header>
-          <Card.Description>
+        <div style={{ display: 'grid', gap: '16px' }}>
+          <ExampleSurface minHeight="180px" radius="10px" surface="soft" />
+          <div style={{ display: 'grid', gap: '8px' }}>
+            <span>Recommended Log</span>
+            <h3 style={{ margin: 0 }}>Journey of Reflection</h3>
+          </div>
+          <p style={{ color: 'rgba(45, 54, 82, 0.82)', margin: 0 }}>
             A deep dive into the 10-year journey of the hero party and the weight of time.
-          </Card.Description>
-        </Card.Content>
+          </p>
+        </div>
       </Card>
     </ExampleFrame>
   );
@@ -31,7 +31,7 @@ export default () => {
 
 ## Horizontal Layout
 
-Use `orientation="horizontal"` for denser cards that place media beside the content.
+Build denser horizontal cards by composing your own inner layout inside the surface.
 
 ```jsx preview
 import React from 'react';
@@ -41,16 +41,23 @@ import { ExampleFrame, ExampleSurface } from '@docs-support/example-frame';
 export default () => {
   return (
     <ExampleFrame width="560px">
-      <Card interactive orientation="horizontal">
-        <ExampleSurface minHeight="100%" minWidth="180px" surface="subtle" />
-        <Card.Content>
-          <Card.Header>
-            <Card.Title as="h4">Spellbook: Vol 12</Card.Title>
-          </Card.Header>
-          <Card.Description>
-            A collection of minor folk magic spells from the Central Lands.
-          </Card.Description>
-        </Card.Content>
+      <Card interactive>
+        <div
+          style={{
+            alignItems: 'stretch',
+            display: 'grid',
+            gap: '24px',
+            gridTemplateColumns: '180px minmax(0, 1fr)',
+          }}
+        >
+          <ExampleSurface minHeight="100%" minWidth="180px" radius="10px" surface="subtle" />
+          <div style={{ display: 'grid', gap: '12px' }}>
+            <h4 style={{ margin: 0 }}>Spellbook: Vol 12</h4>
+            <p style={{ color: 'rgba(45, 54, 82, 0.82)', margin: 0 }}>
+              A collection of minor folk magic spells from the Central Lands.
+            </p>
+          </div>
+        </div>
       </Card>
     </ExampleFrame>
   );
@@ -71,19 +78,35 @@ export default () => {
   return (
     <ExampleFrame width="420px">
       <Card interactive tone="accent">
-        <Card.Content>
-          <Card.Header>
-            <Card.Title>The Aureole Expedition</Card.Title>
-            <Card.Action>Seasonal Update</Card.Action>
-          </Card.Header>
-          <Card.Description>
+        <div style={{ display: 'grid', gap: '16px' }}>
+          <div
+            style={{
+              alignItems: 'center',
+              display: 'flex',
+              gap: '12px',
+              justifyContent: 'space-between',
+            }}
+          >
+            <h3 style={{ margin: 0 }}>The Aureole Expedition</h3>
+            <span>Seasonal Update</span>
+          </div>
+          <p style={{ color: 'rgba(255, 250, 245, 0.92)', margin: 0 }}>
             "It is a place where one can speak with the spirits of the dead."
-          </Card.Description>
-          <Card.Footer>
+          </p>
+          <div
+            style={{
+              alignItems: 'center',
+              borderTop: '1px solid rgba(255, 250, 245, 0.28)',
+              display: 'flex',
+              gap: '16px',
+              justifyContent: 'space-between',
+              paddingTop: '20px',
+            }}
+          >
             <span>Expedition log</span>
             <Button color="default" variant="outline">Join Log</Button>
-          </Card.Footer>
-        </Card.Content>
+          </div>
+        </div>
       </Card>
     </ExampleFrame>
   );

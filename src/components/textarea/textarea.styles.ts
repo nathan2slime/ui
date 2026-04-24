@@ -74,6 +74,7 @@ export const textareaStyles = cva({
     backgroundColor: 'inputBackground',
     borderColor: 'inputBorder',
     borderRadius: 'sm',
+    borderStyle: 'solid',
     borderWidth: '1px',
     color: 'inputForeground',
     display: 'block',
@@ -81,7 +82,7 @@ export const textareaStyles = cva({
     outline: 'none',
     resize: 'vertical',
     transitionDuration: 'fast',
-    transitionProperty: 'background-color, border-color, box-shadow, color',
+    transitionProperty: 'background-color, border-color, color',
     transitionTimingFunction: 'ease',
     width: '100%',
     _placeholder: {
@@ -96,7 +97,10 @@ export const textareaStyles = cva({
     },
     _focusVisible: {
       borderColor: 'inputFocusBorder',
-      boxShadow: 'focusRing',
+      outlineColor: 'inputFocusBorder',
+      outlineOffset: '2px',
+      outlineStyle: 'solid',
+      outlineWidth: '2px',
     },
   },
   variants: {
@@ -136,7 +140,7 @@ export const textareaStyles = cva({
         color: 'inputSuccessForeground',
         _focusVisible: {
           borderColor: 'inputSuccessBorder',
-          boxShadow: 'focusRingSuccess',
+          outlineColor: 'inputSuccessBorder',
         },
       },
       warning: {
@@ -145,7 +149,7 @@ export const textareaStyles = cva({
         color: 'inputWarningForeground',
         _focusVisible: {
           borderColor: 'inputWarningBorder',
-          boxShadow: 'focusRingWarning',
+          outlineColor: 'inputWarningBorder',
         },
       },
       danger: {
@@ -154,7 +158,7 @@ export const textareaStyles = cva({
         color: 'inputErrorForeground',
         _focusVisible: {
           borderColor: 'inputErrorBorder',
-          boxShadow: 'focusRingError',
+          outlineColor: 'inputErrorBorder',
         },
       },
     },

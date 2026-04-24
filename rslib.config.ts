@@ -5,7 +5,6 @@ export default defineConfig({
   source: {
     entry: {
       index: ['./src/index.tsx'],
-      theme: ['./src/theme/index.ts'],
       badge: ['./src/components/badge/index.ts'],
       button: ['./src/components/button/index.ts'],
       card: ['./src/components/card/index.ts'],

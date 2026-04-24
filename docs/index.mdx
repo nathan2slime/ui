@@ -2,8 +2,8 @@
 pageType: home
 hero:
   name: '^^'
-  text: Composable React UI for forms, feedback, content, and theming
-  tagline: Accessible primitives, compound APIs, semantic tokens, and scoped themes for modern React apps.
+  text: Composable React UI for forms, feedback, and content
+  tagline: Accessible primitives, compound APIs, and semantic color tokens for modern React apps.
   actions:
     - theme: brand
       text: Quick Start
@@ -15,39 +15,37 @@ features:
   - title: Composition First
     details: Compound components such as Card, Select, Tabs, and Tooltip keep related parts explicit and reusable.
   - title: Semantic Tokens
-    details: Components are styled from semantic theme tokens so you can customize color systems without rewriting component code.
+    details: Components are styled from semantic color tokens so you can customize palettes without rewriting component code.
   - title: Typed API Surface
-    details: Components, hooks, and theme contracts are exported with generated API docs and examples.
+    details: Components and hooks are exported with generated API docs and examples.
 ---
 
 # Overview
 
 `@nathan3boss/ui` is a React component library focused on practical product UI:
-form controls, content surfaces, interaction patterns, and a theme layer that
-can be scoped to part of an app.
+form controls, content surfaces, interaction patterns, and a default color
+system that works out of the box.
 
 ## Start Here
 
 - New to the library: go to [Get Started](/get-started.html) for installation and import patterns.
 - Building forms: start with [Input](/components/input.html), [Textarea](/components/textarea.html), [Select](/components/select.html), [Radio](/components/radio.html), and [Switch](/components/switch.html).
 - Building app chrome and content: see [Button](/components/button.html), [Badge](/components/badge.html), [Card](/components/card.html), [Tabs](/components/tabs.html), and [Tooltip](/components/tooltip.html).
-- Setting up theming: visit [Theme](/components/theme.html) for `UiThemeProvider`, dark mode, and custom theme registration.
 - Importing the library: use the subpath exports documented in [Get Started](/get-started.html).
 
 ## What You Get
 
 - Accessible primitives built on native HTML semantics where possible.
 - Composition-friendly APIs instead of large all-in-one components.
-- Semantic token styling that works with app-level overrides and custom themes.
+- Semantic token styling with a warm default palette and app-level CSS variable overrides.
 - ESM-first package exports for modern React environments.
-- Generated API references for components, theme APIs, and public types.
+- Generated API references for components and public types.
 
 ## Recommended Reading Path
 
 1. [Get Started](/get-started.html)
 2. [Button](/components/button.html) and [Card](/components/card.html)
 3. [Input](/components/input.html) and [Select](/components/select.html)
-4. [Theme](/components/theme.html)
 
 ## Public Exports
 
@@ -56,10 +54,9 @@ can be scoped to part of an app.
 - Forms: `@nathan3boss/ui/input`, `@nathan3boss/ui/textarea`, `@nathan3boss/ui/select`, `@nathan3boss/ui/label`, `@nathan3boss/ui/helper-text`
 - Selection: `@nathan3boss/ui/radio`, `@nathan3boss/ui/switch`, `@nathan3boss/ui/tabs`
 - Content: `@nathan3boss/ui/card`, `@nathan3boss/ui/typography`, `@nathan3boss/ui/tooltip`
-- Theming: `@nathan3boss/ui/theme`
 
 ## API Reference
 
 Generated API docs are available under [/api](/api.html) and on each component
 page. They cover the published package exports such as `Button`, `Card`,
-`UiThemeProvider`, and the public theme contracts.
+and the public component contracts.

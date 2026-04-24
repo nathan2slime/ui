@@ -100,7 +100,10 @@ export const radioInputStyles = cva({
     zIndex: '1',
     _focusVisible: {
       '& + span': {
-        boxShadow: 'focusRing',
+        outlineColor: 'brandPrimary',
+        outlineOffset: '2px',
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
       },
     },
     _disabled: {
@@ -114,12 +117,13 @@ export const radioVisualStyles = cva({
     alignItems: 'center',
     borderColor: 'borderSubtle',
     borderRadius: 'full',
+    borderStyle: 'solid',
     borderWidth: '2px',
     display: 'inline-flex',
     height: '100%',
     justifyContent: 'center',
     transitionDuration: 'fast',
-    transitionProperty: 'border-color, box-shadow',
+    transitionProperty: 'border-color',
     transitionTimingFunction: 'ease',
     width: '100%',
     '&::after': {

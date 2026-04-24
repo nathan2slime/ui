@@ -16,11 +16,11 @@ const justifyMap = {
 } as const;
 
 const surfaceMap = {
-  contrast: '#111827',
-  muted: '#f8fafc',
+  contrast: '#2d3652',
+  muted: '#f7efe7',
   plain: 'transparent',
-  soft: '#dbeafe',
-  subtle: '#e2e8f0',
+  soft: '#efe9ff',
+  subtle: '#dedbd2',
 } as const;
 
 /**

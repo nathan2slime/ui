@@ -25,7 +25,6 @@ export const tooltipContentStyles = cva({
   base: {
     backgroundColor: 'textPrimary',
     borderRadius: 'sm',
-    boxShadow: 'softLift',
     color: 'surfaceBase',
     fontFamily: 'sansDisplay',
     fontSize: 'uiSm',
