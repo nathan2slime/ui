@@ -37,10 +37,13 @@ export const tabsTriggerStyles = cva({
     outline: 'none',
     paddingInline: '1rem',
     transitionDuration: 'fast',
-    transitionProperty: 'background-color, border-color, color, box-shadow',
+    transitionProperty: 'background-color, border-color, color',
     whiteSpace: 'nowrap',
     _focusVisible: {
-      boxShadow: 'focusRing',
+      outlineColor: 'brandPrimary',
+      outlineOffset: '2px',
+      outlineStyle: 'solid',
+      outlineWidth: '2px',
     },
     _disabled: {
       cursor: 'not-allowed',
@@ -52,7 +55,6 @@ export const tabsTriggerStyles = cva({
       true: {
         backgroundColor: 'brandPrimary',
         borderColor: 'brandPrimary',
-        boxShadow: 'magicGlow',
         color: 'surfaceBase',
       },
       false: {

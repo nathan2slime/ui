@@ -86,11 +86,6 @@
       "import": "./dist/switch.js",
       "default": "./dist/switch.js"
     },
-    "./theme": {
-      "types": "./dist/theme/index.d.ts",
-      "import": "./dist/theme.js",
-      "default": "./dist/theme.js"
-    },
     "./typography": {
       "types": "./dist/components/typography/index.d.ts",
       "import": "./dist/typography.js",

@@ -135,7 +135,10 @@ export const switchInputStyles = cva({
     zIndex: '1',
     _focusVisible: {
       '& + span': {
-        boxShadow: 'focusRing',
+        outlineColor: 'brandPrimary',
+        outlineOffset: '2px',
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
       },
     },
     _disabled: {
@@ -154,7 +157,7 @@ export const switchTrackStyles = cva({
     height: '100%',
     position: 'relative',
     transitionDuration: 'fast',
-    transitionProperty: 'background-color, border-color, box-shadow',
+    transitionProperty: 'background-color, border-color',
     transitionTimingFunction: 'ease',
     width: '100%',
     '&::after': {
@@ -162,7 +165,6 @@ export const switchTrackStyles = cva({
       borderColor: 'borderSubtle',
       borderWidth: '1px',
       borderRadius: 'full',
-      boxShadow: 'softLift',
       content: "''",
       left: '0.15rem',
       position: 'absolute',

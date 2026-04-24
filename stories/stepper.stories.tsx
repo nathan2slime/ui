@@ -204,7 +204,7 @@ export const CheckoutFlow: Story = {
 
         <div
           style={{
-            border: '1px solid rgba(192, 202, 214, 0.32)',
+            border: '1px solid rgba(188, 192, 211, 0.34)',
             borderRadius: '16px',
             display: 'grid',
             gap: '0.75rem',

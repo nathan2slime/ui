@@ -77,11 +77,14 @@ export const stepperItemButtonStyles = cva({
     outline: 'none',
     textAlign: 'left',
     transitionDuration: 'fast',
-    transitionProperty: 'background-color, border-color, box-shadow, color',
+    transitionProperty: 'background-color, border-color, color',
     transitionTimingFunction: 'ease',
     width: '100%',
     _focusVisible: {
-      boxShadow: 'focusRing',
+      outlineColor: 'brandPrimary',
+      outlineOffset: '2px',
+      outlineStyle: 'solid',
+      outlineWidth: '2px',
     },
     _disabled: {
       cursor: 'not-allowed',
@@ -130,7 +133,6 @@ export const stepperItemButtonStyles = cva({
       css: {
         backgroundColor: 'surfaceSubtle',
         borderColor: 'brandPrimary',
-        boxShadow: 'softLift',
       },
     },
     {
@@ -193,7 +195,7 @@ export const stepperIndicatorStyles = cva({
     justifyContent: 'center',
     lineHeight: '1',
     transitionDuration: 'fast',
-    transitionProperty: 'background-color, border-color, color, box-shadow',
+    transitionProperty: 'background-color, border-color, color',
     transitionTimingFunction: 'ease',
   },
   variants: {
@@ -237,7 +239,6 @@ export const stepperIndicatorStyles = cva({
       css: {
         backgroundColor: 'actionSolidPrimaryBackground',
         borderColor: 'actionSolidPrimaryBorder',
-        boxShadow: 'magicGlow',
         color: 'actionSolidPrimaryForeground',
       },
     },

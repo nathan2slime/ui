@@ -1,22 +1,14 @@
-import { ArrowRight01Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
 import { describe, expect, test } from '@rstest/core';
 import { render, screen } from '@testing-library/react';
 
 import { Card } from '@/components/card';
 
 describe('Card', () => {
-  test('renders its title and description content', async () => {
+  test('renders arbitrary children content', async () => {
     render(
       <Card>
-        <Card.Content>
-          <Card.Header>
-            <Card.Title>Journey of Reflection</Card.Title>
-          </Card.Header>
-          <Card.Description>
-            A deep dive into the hero party memories.
-          </Card.Description>
-        </Card.Content>
+        <h3>Journey of Reflection</h3>
+        <p>A deep dive into the hero party memories.</p>
       </Card>,
     );
 
@@ -26,41 +18,25 @@ describe('Card', () => {
     ).toBeInTheDocument();
   });
 
-  test('renders header and action content', async () => {
+  test('merges native div props and custom classes', async () => {
     render(
-      <Card>
-        <Card.Content>
-          <Card.Header>
-            <Card.Title>Journey</Card.Title>
-            <Card.Action>Recommended Log</Card.Action>
-          </Card.Header>
-        </Card.Content>
+      <Card className="custom-card" data-testid="card" id="journey-card">
+        Journey
       </Card>,
     );
 
-    expect(screen.getByText('Recommended Log')).toBeInTheDocument();
+    expect(screen.getByTestId('card')).toHaveAttribute('id', 'journey-card');
+    expect(screen.getByTestId('card')).toHaveClass('custom-card');
   });
 
-  test('renders horizontal content layouts', async () => {
+  test('supports nested layouts inside the surface', async () => {
     render(
-      <Card orientation="horizontal">
-        <Card.Content>
-          <Card.Header>
-            <Card.Title as="h4">Spellbook: Vol 12</Card.Title>
-          </Card.Header>
-          <Card.Description>
-            A collection of folk magic spells.
-          </Card.Description>
-          <Card.Footer>
-            <span>Rare archive</span>
-            <HugeiconsIcon
-              aria-hidden="true"
-              color="currentColor"
-              icon={ArrowRight01Icon}
-              size={18}
-            />
-          </Card.Footer>
-        </Card.Content>
+      <Card>
+        <div>
+          <h4>Spellbook: Vol 12</h4>
+          <p>A collection of folk magic spells.</p>
+          <span>Rare archive</span>
+        </div>
       </Card>,
     );
 

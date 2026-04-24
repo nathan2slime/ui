@@ -83,13 +83,14 @@ export const inputStyles = cva({
     backgroundColor: 'inputBackground',
     borderColor: 'inputBorder',
     borderRadius: 'sm',
+    borderStyle: 'solid',
     borderWidth: '1px',
     color: 'inputForeground',
     display: 'block',
     fontFamily: 'sansDisplay',
     outline: 'none',
     transitionDuration: 'fast',
-    transitionProperty: 'background-color, border-color, box-shadow, color',
+    transitionProperty: 'background-color, border-color, color',
     transitionTimingFunction: 'ease',
     width: '100%',
     _placeholder: {
@@ -103,7 +104,10 @@ export const inputStyles = cva({
     },
     _focusVisible: {
       borderColor: 'inputFocusBorder',
-      boxShadow: 'focusRing',
+      outlineColor: 'inputFocusBorder',
+      outlineOffset: '2px',
+      outlineStyle: 'solid',
+      outlineWidth: '2px',
     },
   },
   variants: {
@@ -140,7 +144,7 @@ export const inputStyles = cva({
         color: 'inputSuccessForeground',
         _focusVisible: {
           borderColor: 'inputSuccessBorder',
-          boxShadow: 'focusRingSuccess',
+          outlineColor: 'inputSuccessBorder',
         },
       },
       warning: {
@@ -149,7 +153,7 @@ export const inputStyles = cva({
         color: 'inputWarningForeground',
         _focusVisible: {
           borderColor: 'inputWarningBorder',
-          boxShadow: 'focusRingWarning',
+          outlineColor: 'inputWarningBorder',
         },
       },
       danger: {
@@ -158,7 +162,7 @@ export const inputStyles = cva({
         color: 'inputErrorForeground',
         _focusVisible: {
           borderColor: 'inputErrorBorder',
-          boxShadow: 'focusRingError',
+          outlineColor: 'inputErrorBorder',
         },
       },
     },

@@ -25,17 +25,17 @@ export default () => {
   return (
     <ExampleFrame maxWidth="420px">
       <Card>
-        <Card.Content>
-          <Card.Header>
-            <Card.Title>Ship faster</Card.Title>
-          </Card.Header>
-          <Card.Description>
-            Start with accessible primitives and consistent styling tokens.
-          </Card.Description>
-          <ExampleFrame padding="16px 0 0">
+        <div style={{ display: 'grid', gap: '16px' }}>
+          <div style={{ display: 'grid', gap: '8px' }}>
+            <h3 style={{ margin: 0 }}>Ship faster</h3>
+            <p style={{ color: 'rgba(45, 54, 82, 0.82)', margin: 0 }}>
+              Start with accessible primitives and consistent styling tokens.
+            </p>
+          </div>
+          <ExampleFrame padding="0">
             <Button>Open workspace</Button>
           </ExampleFrame>
-        </Card.Content>
+        </div>
       </Card>
     </ExampleFrame>
   );
@@ -46,9 +46,8 @@ export default () => {
 
 - Form controls: `Input`, `Textarea`, `Select`, `Radio`, `Switch`, `Label`, `HelperText`
 - Actions and feedback: `Button`, `Badge`, `Spinner`, `Tooltip`
-- Layout and content: `Card`, `Card.Header`, `Card.Content`, `Card.Footer`, `Card.Title`, `Card.Description`, `Typography`
+- Layout and content: `Card`, `Typography`
 - Navigation: `Tabs`, `Tabs.List`, `Tabs.Trigger`, `Tabs.Content`
-- Theming: `UiThemeProvider`, `useUiTheme`
 
 ## Import patterns
 
@@ -58,12 +57,6 @@ Import each component from its public subpath export:
 import { Button } from '@nathan3boss/ui/button';
 import { Input } from '@nathan3boss/ui/input';
 import { Tabs } from '@nathan3boss/ui/tabs';
-```
-
-Use the dedicated theme export for theming APIs:
-
-```tsx
-import { UiThemeProvider, useUiTheme } from '@nathan3boss/ui/theme';
 ```
 
 The package does not expose a catch-all component API from `@nathan3boss/ui`.
@@ -83,7 +76,6 @@ import { Select } from '@nathan3boss/ui/select';
 import { Spinner } from '@nathan3boss/ui/spinner';
 import { Switch } from '@nathan3boss/ui/switch';
 import { Tabs } from '@nathan3boss/ui/tabs';
-import { UiThemeProvider } from '@nathan3boss/ui/theme';
 import { Textarea } from '@nathan3boss/ui/textarea';
 import { Tooltip } from '@nathan3boss/ui/tooltip';
 import { Typography } from '@nathan3boss/ui/typography';

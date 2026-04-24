@@ -78,9 +78,9 @@ export default () => {
 };
 ```
 
-## Theme Tokens
+## Color Tokens
 
-The component styles are driven by Panda tokens defined in the library theme. Consumers can override the generated CSS variables at the app root or inside a scoped wrapper.
+The component styles are driven by Panda tokens and ship with the default warm palette. Consumers can still override generated CSS variables at the app root or inside a scoped wrapper.
 
 ```jsx preview
 import React from 'react';
@@ -91,11 +91,11 @@ export default () => {
   return (
     <ExampleFrame
       vars={{
-        '--colors-action-solid-background': '#7c2d12',
-        '--colors-action-solid-background-hover': '#9a3412',
-        '--colors-action-solid-border': '#7c2d12',
-        '--colors-action-solid-border-hover': '#9a3412',
-        '--colors-action-solid-foreground': '#fff7ed',
+        '--colors-action-solid-primary-background': '#b94955',
+        '--colors-action-solid-primary-background-hover': '#a83d49',
+        '--colors-action-solid-primary-border': '#b94955',
+        '--colors-action-solid-primary-border-hover': '#a83d49',
+        '--colors-action-solid-primary-foreground': '#fffaf5',
         '--radii-full': '18px',
       }}
     >
@@ -105,7 +105,7 @@ export default () => {
 };
 ```
 
-This gives the library a base theme out of the box while still letting consumers customize tokens without changing component code.
+This gives the library a base color system out of the box while still letting consumers customize tokens without changing component code.
 
 ## API
 

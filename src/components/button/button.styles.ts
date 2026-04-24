@@ -17,18 +17,19 @@ export const buttonStyles = cva({
     outline: 'none',
     position: 'relative',
     transitionDuration: 'fast',
-    transitionProperty:
-      'background-color, border-color, color, box-shadow, transform',
+    transitionProperty: 'background-color, border-color, color, transform',
     transitionTimingFunction: 'ease',
     userSelect: 'none',
     verticalAlign: 'middle',
     whiteSpace: 'nowrap',
-    boxShadow: 'softLift',
     '& svg': {
       flexShrink: '0',
     },
     _focusVisible: {
-      boxShadow: 'focusRing',
+      outlineColor: 'inputFocusBorder',
+      outlineOffset: '2px',
+      outlineStyle: 'solid',
+      outlineWidth: '2px',
     },
     _disabled: {
       cursor: 'not-allowed',
@@ -41,9 +42,7 @@ export const buttonStyles = cva({
   },
   variants: {
     variant: {
-      solid: {
-        boxShadow: 'magicGlow',
-      },
+      solid: {},
       outline: {
         backgroundColor: 'surfaceBase',
       },
