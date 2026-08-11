@@ -1,80 +1,71 @@
-import { type ChangeEvent, forwardRef, type ReactNode, useId } from 'react';
-import { cx } from 'styled-system/css';
+import type { PropTypes as ZagPropTypes } from '@zag-js/react';
+import { normalizeProps, useMachine } from '@zag-js/react';
+import { connect, machine } from '@zag-js/switch';
+import { forwardRef, useId } from 'react';
 
 import {
-  switchControlStyles,
-  switchInputStyles,
-  switchLabelStyles,
-  switchRootStyles,
-  switchTrackStyles,
+  StyledSwitchControl,
+  StyledSwitchLabel,
+  StyledSwitchRoot,
+  StyledSwitchThumb,
 } from '@/components/switch/switch.styles';
 import type { SwitchProps } from '@/types/switch';
 
 /**
- * Accessible switch component built on top of a native checkbox.
+ * Renders an accessible Zag-backed switch with a hidden checkbox input.
  *
  * @example
  * ```tsx
- * <Switch label="Enable notifications" />
+ * <Switch label="Enable notifications" defaultChecked />
  * ```
  */
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   (
     {
-      'aria-describedby': ariaDescribedBy,
+      children,
+      checkedLabel = 'On',
       className,
       color = 'default',
-      disabled = false,
       id,
       label,
       labelPlacement = 'end',
-      onChange,
-      onCheckedChange,
       size = 'md',
-      ...rest
+      uncheckedLabel = 'Off',
+      ...props
     },
     ref,
   ) => {
     const generatedId = useId();
-    const controlId = id ?? `${generatedId}-switch`;
-    const describedBy = [ariaDescribedBy].filter(Boolean).join(' ');
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-      onChange?.(event);
-      onCheckedChange?.(event.currentTarget.checked, event);
-    };
-
-    const textContent: ReactNode = label ? (
-      <span className={switchLabelStyles({ size })}>{label}</span>
-    ) : null;
+    const service = useMachine(machine, {
+      ...props,
+      id: id ?? `switch-${generatedId}`,
+    });
+    const api = connect<ZagPropTypes>(service, normalizeProps);
+    const labelContent =
+      label ?? children ?? (api.checked ? checkedLabel : uncheckedLabel);
 
     return (
-      <label
-        className={cx(
-          switchRootStyles({ disabled, labelPlacement, size }),
-          className,
-        )}
-        data-disabled={disabled ? 'true' : undefined}
+      <StyledSwitchRoot
+        {...api.getRootProps()}
+        className={className}
         data-color={color}
         data-label-placement={labelPlacement}
+        data-part="root"
         data-size={size}
       >
-        {labelPlacement === 'start' ? textContent : null}
-        <span className={switchControlStyles({ color, size })}>
-          <input
-            {...rest}
-            aria-describedby={describedBy || undefined}
-            className={switchInputStyles()}
-            disabled={disabled}
-            id={controlId}
-            onChange={handleChange}
-            ref={ref}
-            type="checkbox"
-          />
-          <span aria-hidden="true" className={switchTrackStyles({ size })} />
-        </span>
-        {labelPlacement === 'end' ? textContent : null}
-      </label>
+        <input {...api.getHiddenInputProps()} ref={ref} />
+        <StyledSwitchControl
+          {...api.getControlProps()}
+          data-color={color}
+          data-part="control"
+          data-size={size}
+        >
+          <StyledSwitchThumb {...api.getThumbProps()} data-part="thumb" />
+        </StyledSwitchControl>
+        <StyledSwitchLabel {...api.getLabelProps()} data-part="label">
+          {labelContent}
+        </StyledSwitchLabel>
+      </StyledSwitchRoot>
     );
   },
 );

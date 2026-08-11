@@ -1,5 +1,10 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./.rslib/declarations/esm/src/*", "./src/*"]
+    }
+  },
   "include": ["src"],
   "exclude": [
     "src/**/*.test.ts",

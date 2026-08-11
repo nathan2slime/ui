@@ -44,7 +44,6 @@ const config: StorybookConfig = {
         alias: {
           ...config.resolve?.alias,
           '@': resolve(storybookRootDirectory, '../src'),
-          'styled-system': resolve(storybookRootDirectory, '../styled-system'),
         },
       },
     };

@@ -1,0 +1,92 @@
+# Checkbox
+
+`Checkbox` is an accessible Zag-backed checkbox for boolean or indeterminate
+selection. It renders a hidden native checkbox input, a visual control, an
+indicator, and a connected label.
+
+## Basic Usage
+
+Pass `label` for a stable visible label. Use `defaultChecked` for uncontrolled
+initial state.
+
+```jsx preview
+import React from 'react';
+import { Checkbox } from '@nathan3boss/ui/checkbox';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="320px">
+    <Checkbox label="Accept quest terms" defaultChecked />
+  </ExampleFrame>
+);
+```
+
+## Dynamic State Text
+
+When no `label` or children are provided, the component mirrors Zag's example
+and renders `Input is checked`, `Input is unchecked`, or
+`Input is indeterminate`.
+
+```jsx preview
+import React from 'react';
+import { Checkbox } from '@nathan3boss/ui/checkbox';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="260px">
+    <Checkbox />
+  </ExampleFrame>
+);
+```
+
+## Indeterminate State
+
+Set `defaultChecked="indeterminate"` for mixed selection groups.
+
+```tsx
+<Checkbox defaultChecked="indeterminate" label="Some spells selected" />
+```
+
+## Controlled State
+
+Use `checked` with `onCheckedChange` when the parent owns the state. The callback
+receives Zag's `{ checked }` details object, where `checked` can be `true`,
+`false`, or `"indeterminate"`.
+
+```tsx
+const [checked, setChecked] = useState(false);
+
+<Checkbox
+  checked={checked}
+  label="Receive alerts"
+  onCheckedChange={({ checked }) => setChecked(checked)}
+/>;
+```
+
+## Appearance
+
+Use `color` with `default`, `success`, `warning`, or `danger`, and `size` with
+`sm`, `md`, or `lg`. `labelPlacement="start"` moves the label before the visual
+control.
+
+```jsx preview
+import React from 'react';
+import { Checkbox } from '@nathan3boss/ui/checkbox';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="320px">
+    <Checkbox
+      color="success"
+      defaultChecked
+      label="Receive magical updates"
+      labelPlacement="start"
+      size="lg"
+    />
+  </ExampleFrame>
+);
+```
+
+## API
+
+<API moduleName="Checkbox" />

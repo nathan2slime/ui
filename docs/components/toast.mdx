@@ -1,0 +1,71 @@
+# Toast
+
+`Toast` is a Zag-backed notification system. Use the exported `toaster` store to
+publish notifications and render `Toaster` once near the app root.
+
+## Basic Usage
+
+Render `Toaster`, then call `toaster.create(...)` from anywhere that imports the
+store.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { Toaster, toaster } from '@nathan3boss/ui/toast';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="360px">
+    <Toaster />
+    <Button
+      onClick={() => {
+        toaster.create({ title: 'Hello', description: 'A tiny toast appeared.' });
+      }}
+    >
+      Info toast
+    </Button>
+  </ExampleFrame>
+);
+```
+
+## Toast Types
+
+Use the store helpers for common semantic variants.
+
+```tsx
+toaster.success({ title: 'Data submitted!', description: 'Everything is saved.' });
+toaster.warning({ title: 'Careful', description: 'Review this before leaving.' });
+toaster.error({ title: 'Could not save', description: 'Please try again.' });
+```
+
+## Actions
+
+Pass `action` to render an action button. Zag dismisses the toast after the
+action callback runs.
+
+```tsx
+toaster.warning({
+  title: 'Spell archived',
+  description: 'You can undo this for a short time.',
+  action: {
+    label: 'Undo',
+    onClick: () => restoreSpell(),
+  },
+});
+```
+
+## Custom Stores
+
+Use `createToaster` when a page or test needs an isolated store instead of the
+shared singleton.
+
+```tsx
+const localToaster = createToaster({ placement: 'bottom-end', overlap: false });
+
+<Toaster store={localToaster} />;
+localToaster.create({ title: 'Local toast' });
+```
+
+## API
+
+<API moduleName="Toast" />

@@ -1,0 +1,87 @@
+# RadioGroup
+
+`RadioGroup` is a Zag-backed component for selecting one value from a typed item
+collection. It renders a labeled `radiogroup`, one hidden radio input per item,
+and custom visual item controls.
+
+## Basic Usage
+
+Provide a visible `label` and an `items` array. Use `defaultValue` for an
+uncontrolled initial selection.
+
+```jsx preview
+import React from 'react';
+import { RadioGroup } from '@nathan3boss/ui/radio-group';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+const items = [
+  { value: 'apple', label: 'Apples' },
+  { value: 'orange', label: 'Oranges' },
+  { value: 'mango', label: 'Mangoes' },
+  { value: 'grape', label: 'Grapes' },
+];
+
+export default () => (
+  <ExampleFrame width="320px">
+    <RadioGroup label="Fruits" items={items} defaultValue="apple" />
+  </ExampleFrame>
+);
+```
+
+## Controlled Value
+
+Use `value` with `onValueChange` when the parent owns the selection. The change
+callback receives Zag's `{ value }` details object.
+
+```tsx
+const [value, setValue] = useState<string | null>('apple');
+
+<RadioGroup
+  label="Fruits"
+  items={items}
+  value={value}
+  onValueChange={({ value }) => setValue(value)}
+/>;
+```
+
+## Orientation And Appearance
+
+Use `orientation="horizontal"` for inline options. Use `color` with `default`,
+`success`, `warning`, or `danger`, and `size` with `sm`, `md`, or `lg`.
+
+```jsx preview
+import React from 'react';
+import { RadioGroup } from '@nathan3boss/ui/radio-group';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="420px">
+    <RadioGroup
+      color="success"
+      defaultValue="mango"
+      items={[
+        { value: 'apple', label: 'Apples' },
+        { value: 'mango', label: 'Mangoes' },
+        { value: 'grape', label: 'Grapes' },
+      ]}
+      label="Fruits"
+      orientation="horizontal"
+    />
+  </ExampleFrame>
+);
+```
+
+## Disabled Items
+
+Set `disabled: true` on an item to prevent selection and focus for that option.
+
+```tsx
+<RadioGroup
+  label="Fruits"
+  items={[...items, { value: 'dragonfruit', label: 'Dragonfruit', disabled: true }]}
+/>;
+```
+
+## API
+
+<API moduleName="RadioGroup" />

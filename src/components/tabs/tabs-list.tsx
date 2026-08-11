@@ -1,22 +1,18 @@
-import { cx } from 'styled-system/css';
+import { mergeProps } from '@zag-js/react';
 
-import { tabsListStyles } from '@/components/tabs/tabs.styles';
+import { StyledTabsList } from '@/components/tabs/tabs.styles';
+import { useTabsContext } from '@/components/tabs/tabs-context';
 import type { TabsListProps } from '@/types/tabs';
 
-/**
- * Wraps tab triggers with the correct `tablist` semantics.
- *
- * @example
- * ```tsx
- * <Tabs.List>
- *   <Tabs.Trigger value="account">Account</Tabs.Trigger>
- * </Tabs.List>
- * ```
- */
-export const TabsList = ({ children, className, ...props }: TabsListProps) => {
+/** Renders the keyboard-navigable tab list. */
+export const TabsList = (props: TabsListProps) => {
+  const { api, orientation } = useTabsContext();
+
   return (
-    <div {...props} className={cx(tabsListStyles(), className)} role="tablist">
-      {children}
-    </div>
+    <StyledTabsList
+      {...mergeProps(props, api.getListProps())}
+      data-orientation={orientation}
+      data-part="list"
+    />
   );
 };

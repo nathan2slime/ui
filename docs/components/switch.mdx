@@ -1,63 +1,81 @@
 # Switch
 
-The `Switch` component exposes an accessible toggle control backed by a native checkbox and Panda tokens.
+`Switch` is an accessible Zag-backed toggle for boolean settings. It renders a
+hidden checkbox for form integration, a visual control, a thumb, and a connected
+label.
 
-## Usage
+## Basic Usage
+
+Pass `label` for a stable visible label. Use `defaultChecked` for uncontrolled
+initial state.
 
 ```jsx preview
 import React from 'react';
 import { Switch } from '@nathan3boss/ui/switch';
 import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame>
-      <Switch label="Enable notifications" />
-    </ExampleFrame>
-  );
-};
+export default () => (
+  <ExampleFrame width="320px">
+    <Switch label="Enable moonlight mode" defaultChecked />
+  </ExampleFrame>
+);
 ```
 
-## Colors
+## Dynamic On And Off Text
 
-Use the `color` prop to align the on-state color with success, warning, or danger semantics.
+When no `label` or children are provided, the component mirrors Zag's example
+and renders `checkedLabel` or `uncheckedLabel` based on the current checked
+state. The defaults are `On` and `Off`.
 
 ```jsx preview
 import React from 'react';
 import { Switch } from '@nathan3boss/ui/switch';
 import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame direction="column" gap="16px">
-      <Switch color="success" label="Verified contact" defaultChecked />
-      <Switch color="warning" label="Needs review" defaultChecked />
-      <Switch color="danger" label="Blocked access" defaultChecked />
-    </ExampleFrame>
-  );
-};
+export default () => (
+  <ExampleFrame width="220px">
+    <Switch checkedLabel="On" uncheckedLabel="Off" />
+  </ExampleFrame>
+);
 ```
 
-## Label Placement
+## Controlled State
 
-Flip the label order with `labelPlacement="start"` when the toggle should follow the text.
+Use `checked` with `onCheckedChange` when the parent owns the state. The callback
+receives Zag's `{ checked }` details object.
+
+```tsx
+const [checked, setChecked] = useState(false);
+
+<Switch
+  checked={checked}
+  label="Receive alerts"
+  onCheckedChange={({ checked }) => setChecked(checked)}
+/>;
+```
+
+## Appearance
+
+Use `color` with `default`, `success`, `warning`, or `danger`, and `size` with
+`sm`, `md`, or `lg`. `labelPlacement="start"` moves the label before the visual
+control.
 
 ```jsx preview
 import React from 'react';
 import { Switch } from '@nathan3boss/ui/switch';
 import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame>
-      <Switch
-        defaultChecked
-        label="Show label before the toggle"
-        labelPlacement="start"
-      />
-    </ExampleFrame>
-  );
-};
+export default () => (
+  <ExampleFrame width="320px">
+    <Switch
+      color="success"
+      defaultChecked
+      label="Auto-save spells"
+      labelPlacement="start"
+      size="lg"
+    />
+  </ExampleFrame>
+);
 ```
 
 ## API

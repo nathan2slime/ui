@@ -2,8 +2,8 @@
 pageType: home
 hero:
   name: '^^'
-  text: Composable React UI for forms, feedback, and content
-  tagline: Accessible primitives, compound APIs, and semantic color tokens for modern React apps.
+  text: Composable React UI for actions and forms
+  tagline: Accessible Button and Select primitives with semantic theme tokens for modern React apps.
   actions:
     - theme: brand
       text: Quick Start
@@ -13,7 +13,7 @@ hero:
       link: /components/
 features:
   - title: Composition First
-    details: Compound components such as Card, Select, Tabs, and Tooltip keep related parts explicit and reusable.
+    details: Select keeps its related parts explicit and reusable through a compound component API.
   - title: Semantic Tokens
     details: Components are styled from semantic color tokens so you can customize palettes without rewriting component code.
   - title: Typed API Surface
@@ -22,15 +22,15 @@ features:
 
 # Overview
 
-`@nathan3boss/ui` is a React component library focused on practical product UI:
-form controls, content surfaces, interaction patterns, and a default color
-system that works out of the box.
+`@nathan3boss/ui` is a React component library with practical action and form
+controls plus a default color system that works out of the box.
 
 ## Start Here
 
 - New to the library: go to [Get Started](/get-started.html) for installation and import patterns.
-- Building forms: start with [Input](/components/input.html), [Textarea](/components/textarea.html), [Select](/components/select.html), [Radio](/components/radio.html), and [Switch](/components/switch.html).
-- Building app chrome and content: see [Button](/components/button.html), [Badge](/components/badge.html), [Card](/components/card.html), [Tabs](/components/tabs.html), and [Tooltip](/components/tooltip.html).
+- Building forms: start with [Select](/components/select.html).
+- Building actions: see [Button](/components/button.html).
+- Configuring application-level tokens: see [Theme](/components/theme.html).
 - Importing the library: use the subpath exports documented in [Get Started](/get-started.html).
 
 ## What You Get
@@ -44,19 +44,16 @@ system that works out of the box.
 ## Recommended Reading Path
 
 1. [Get Started](/get-started.html)
-2. [Button](/components/button.html) and [Card](/components/card.html)
-3. [Input](/components/input.html) and [Select](/components/select.html)
+2. [Button](/components/button.html)
+3. [Select](/components/select.html) and [Theme](/components/theme.html)
 
 ## Public Exports
 
-- Styles: `@nathan3boss/ui/styles` or `@nathan3boss/ui/styles.css`
-- Actions: `@nathan3boss/ui/button`, `@nathan3boss/ui/badge`, `@nathan3boss/ui/spinner`
-- Forms: `@nathan3boss/ui/input`, `@nathan3boss/ui/textarea`, `@nathan3boss/ui/select`, `@nathan3boss/ui/label`, `@nathan3boss/ui/helper-text`
-- Selection: `@nathan3boss/ui/radio`, `@nathan3boss/ui/switch`, `@nathan3boss/ui/tabs`
-- Content: `@nathan3boss/ui/card`, `@nathan3boss/ui/typography`, `@nathan3boss/ui/tooltip`
+- Actions: `@nathan3boss/ui/button`
+- Forms: `@nathan3boss/ui/select`
+- Theming: `@nathan3boss/ui` and `@nathan3boss/ui/theme`
 
 ## API Reference
 
 Generated API docs are available under [/api](/api.html) and on each component
-page. They cover the published package exports such as `Button`, `Card`,
-and the public component contracts.
+page. They cover the published package exports and public component contracts.

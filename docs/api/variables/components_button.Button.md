@@ -1,8 +1,8 @@
 # Variable: Button
 
-> `const` **Button**: `ForwardRefExoticComponent`\<`Omit`\<`ButtonHTMLAttributes`\<`HTMLButtonElement`\>, `"color"` \| `"children"`\> & `Partial`\<\{ `color`: `ButtonColor`; `fullWidth`: `boolean`; `size`: `ButtonSize`; `variant`: `ButtonVariant`; \}\> & `object` & `RefAttributes`\<`HTMLButtonElement`\>\>
+> `const` **Button**: `ForwardRefExoticComponent`\<`Omit`\<`ButtonHTMLAttributes`\<`HTMLButtonElement`\>, `"children"` \| `"color"`\> & `Partial`\<\{ `color`: `ButtonColor`; `fullWidth`: `boolean`; `size`: `ButtonSize`; `variant`: `ButtonVariant`; \}\> & `object` & `RefAttributes`\<`HTMLButtonElement`\>\>
 
-Renders an accessible action control with Panda-powered size, color, and variant styles.
+Renders an accessible action control with styled-components-powered size, color, and variant styles.
 
 ## Example
 

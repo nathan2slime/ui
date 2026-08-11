@@ -1,0 +1,56 @@
+# ScrollArea
+
+`ScrollArea` is a Zag-backed container for scrollable content with custom
+scrollbar parts. It renders a root, viewport, content wrapper, scrollbar, thumb,
+and optional corner when both axes are enabled.
+
+## Basic Usage
+
+Use `ScrollArea` around content that should scroll within a constrained box.
+The default orientation renders a vertical scrollbar.
+
+```jsx preview
+import React from 'react';
+import { ScrollArea } from '@nathan3boss/ui/scroll-area';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+const items = Array.from({ length: 12 }, (_, index) => `Spell note ${index + 1}`);
+
+export default () => (
+  <ExampleFrame width="360px">
+    <ScrollArea style={{ height: '220px', width: '320px' }}>
+      <div style={{ display: 'grid', gap: '8px', padding: '16px' }}>
+        {items.map((item) => (
+          <div key={item}>{item}</div>
+        ))}
+      </div>
+    </ScrollArea>
+  </ExampleFrame>
+);
+```
+
+## Orientation
+
+Set `orientation="horizontal"` for a horizontal scrollbar, or `orientation="both"`
+when the content can overflow on both axes.
+
+```tsx
+<ScrollArea orientation="both" style={{ height: '240px', width: '320px' }}>
+  <WideContent />
+</ScrollArea>
+```
+
+## Sizing
+
+Use `size` with `sm`, `md`, or `lg` to adjust scrollbar thickness. Constrain the
+root with standard layout styles such as `height`, `width`, or a class name.
+
+```tsx
+<ScrollArea size="lg" className="spell-list">
+  <SpellList />
+</ScrollArea>
+```
+
+## API
+
+<API moduleName="ScrollArea" />

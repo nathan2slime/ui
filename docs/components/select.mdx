@@ -1,87 +1,136 @@
 # Select
 
-The `Select` component uses the compound pattern to compose a native select control from reusable parts.
+`Select` is a Zag-backed compound field. It uses `items` as its canonical data
+source, renders the popup internally, and keeps a hidden native select for form
+integration. The visible control is not a native `<select>` element.
 
-## Usage
+## Basic usage
 
-Compose the field with `Select`, `Select.Label`, `Select.Control`, `Select.Item`, and `Select.HelperText`.
-
-```jsx preview
-import React from 'react';
-import { Select } from '@nathan3boss/ui/select';
-import { ExampleFrame } from '@docs-support/example-frame';
-
-export default () => {
-  return (
-    <ExampleFrame width="320px">
-      <Select>
-        <Select.Label>Spell school</Select.Label>
-        <Select.Control defaultValue="support">
-          <Select.Item value="support">Support</Select.Item>
-          <Select.Item value="offense">Offense</Select.Item>
-          <Select.Item value="utility">Utility</Select.Item>
-        </Select.Control>
-      </Select>
-    </ExampleFrame>
-  );
-};
-```
-
-## Helper Text
-
-The helper area shares the same semantic colors used across the library.
+Compose the field with `Select.Label`, `Select.Control`, and optionally
+`Select.HelperText`. Values are scalar strings (or `null` when empty).
 
 ```jsx preview
 import React from 'react';
 import { Select } from '@nathan3boss/ui/select';
 import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame width="320px">
-      <Select color="danger" helperColor="danger">
-        <Select.Label>Spell school</Select.Label>
-        <Select.Control defaultValue="support">
-          <Select.Item value="support">Support</Select.Item>
-          <Select.Item value="offense">Offense</Select.Item>
-          <Select.Item value="utility">Utility</Select.Item>
-        </Select.Control>
-        <Select.HelperText>Choose a valid school before continuing.</Select.HelperText>
-      </Select>
-    </ExampleFrame>
-  );
-};
+const items = [
+  { label: 'Starlight', value: 'starlight' },
+  { label: 'Moon garden', value: 'moon-garden' },
+];
+
+export default () => (
+  <ExampleFrame width="320px">
+    <Select items={items} defaultValue="starlight">
+      <Select.Label>Favorite spell</Select.Label>
+      <Select.Control placeholder="Choose a spell" />
+    </Select>
+  </ExampleFrame>
+);
 ```
 
-## Side Content
+## Custom items and mappers
 
-Use `startContent` and `endContent` to add visual context while preserving the native select behavior.
+Custom item models require `itemToString` and `itemToValue`. Use `renderItem`
+when the popup needs richer content; it does not change the scalar value API.
+
+```tsx
+type Character = { id: string; name: string; role: string };
+
+const characters: Character[] = [
+  { id: 'mimi', name: 'Mimi', role: 'Healer' },
+  { id: 'lumi', name: 'Lumi', role: 'Mage' },
+];
+
+<Select
+  items={characters}
+  itemToString={(item) => `${item.name} · ${item.role}`}
+  itemToValue={(item) => item.id}
+  renderItem={(item) => <strong>{item.name}</strong>}
+>
+  <Select.Label>Choose a companion</Select.Label>
+  <Select.Control placeholder="Meet someone new" />
+</Select>;
+```
+
+## Helper and invalid states
+
+`invalid`, `color`, and `helperColor` expose clear semantic states. Helper text
+is automatically connected to the trigger with `aria-describedby`.
 
 ```jsx preview
 import React from 'react';
+import { Select } from '@nathan3boss/ui/select';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="320px">
+    <Select
+      color="danger"
+      helperColor="danger"
+      invalid
+      items={[{ label: 'Support', value: 'support' }]}
+    >
+      <Select.Label>Spell school</Select.Label>
+      <Select.Control placeholder="Choose a school" />
+      <Select.HelperText>Choose a valid school before continuing.</Select.HelperText>
+    </Select>
+  </ExampleFrame>
+);
+```
+
+## Controlled values
+
+Use `defaultValue` for an uncontrolled initial selection, or pair scalar
+`value` with `onValueChange` for a controlled field. `defaultOpen`, `open`, and
+`onOpenChange` follow the same pattern for the popup.
+
+```tsx
+const [value, setValue] = useState<string | null>('moon-garden');
+
+<Select
+  items={items}
+  value={value}
+  onValueChange={setValue}
+>
+  <Select.Control placeholder="Choose a spell" />
+</Select>;
+```
+
+## Disabled items and side content
+
+Mark built-in items with `disabled: true`, or provide `isItemDisabled` for a
+custom model. `startContent` and `endContent` add decorative context to the
+control; the installed Hugeicons library is recommended for icons.
+
+```tsx
+import { Add01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Search01Icon } from '@hugeicons/core-free-icons';
-import { Select } from '@nathan3boss/ui/select';
-import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame width="320px">
-      <Select>
-        <Select.Label>Search mode</Select.Label>
-        <Select.Control
-          defaultValue="manual"
-          startContent={<HugeiconsIcon color="currentColor" icon={Search01Icon} size={18} />}
-        >
-          <Select.Item value="manual">Manual</Select.Item>
-          <Select.Item value="automatic">Automatic</Select.Item>
-        </Select.Control>
-      </Select>
-    </ExampleFrame>
-  );
-};
+<Select items={[...items, { label: 'Coming soon', value: 'soon', disabled: true }]}>
+  <Select.Label>Gift type</Select.Label>
+  <Select.Control
+    startContent={<HugeiconsIcon icon={Add01Icon} size={18} />}
+    placeholder="Pick a little gift"
+  />
+</Select>;
+```
+
+## Popup placement
+
+The popup is portalled through Zag by default, which prevents clipping inside
+overflow containers. Set `portalled={false}` when the menu must stay in the
+local layout flow, such as an embedded panel.
+
+```tsx
+<Select items={items} portalled={false}>
+  <Select.Control placeholder="Inline popup" />
+</Select>
 ```
 
 ## API
+
+There is no public `Select.Item`. The root owns collection registration and
+renders each item from `items`.
 
 <API moduleName="Select" />

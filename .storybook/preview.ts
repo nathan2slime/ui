@@ -1,8 +1,23 @@
-import type { Preview } from '@storybook/react';
+import type { Decorator, Preview } from '@storybook/react';
+import { createElement, Fragment } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '@/theme';
+import { GlobalStyles } from '@/theme/global-styles';
 
-import './styles/index.css';
+const withGlobalStyles: Decorator = (Story) =>
+  createElement(
+    ThemeProvider,
+    { theme },
+    createElement(
+      Fragment,
+      null,
+      createElement(GlobalStyles),
+      createElement(Story),
+    ),
+  );
 
 const preview: Preview = {
+  decorators: [withGlobalStyles],
   parameters: {
     controls: {
       matchers: {

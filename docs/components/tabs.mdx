@@ -1,57 +1,129 @@
 # Tabs
 
-The `Tabs` component organizes related content into accessible, switchable panels.
+`Tabs` is an accessible compound component for switching between related views.
+It is backed by Zag and connects each `Tabs.Trigger` to its matching
+`Tabs.Content` panel with standard tab roles and ARIA relationships.
 
-## Usage
+## Basic usage
+
+Compose a root with `Tabs.List`, one or more `Tabs.Trigger` elements, and the
+matching `Tabs.Content` panels. Use `defaultValue` for the initially selected
+tab.
 
 ```jsx preview
 import React from 'react';
 import { Tabs } from '@nathan3boss/ui/tabs';
 import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame width="400px">
-      <Tabs defaultValue="account">
-        <Tabs.List>
-          <Tabs.Trigger value="account">Account</Tabs.Trigger>
-          <Tabs.Trigger value="password">Password</Tabs.Trigger>
-        </Tabs.List>
-        <Tabs.Content value="account">Make changes to your account here.</Tabs.Content>
-        <Tabs.Content value="password">Change your password here.</Tabs.Content>
-      </Tabs>
-    </ExampleFrame>
-  );
-};
+export default () => (
+  <ExampleFrame width="420px">
+    <Tabs defaultValue="overview">
+      <Tabs.List aria-label="Spell details">
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="effects">Effects</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="overview">
+        A quick look at this little spell.
+      </Tabs.Content>
+      <Tabs.Content value="effects">
+        See what happens when the spell is cast.
+      </Tabs.Content>
+    </Tabs>
+  </ExampleFrame>
+);
 ```
 
-## States
+`value` must match between a trigger and its panel. The active panel is exposed
+as `role="tabpanel"`, while the list and triggers expose `tablist` and `tab`
+semantics respectively.
+
+## Controlled values
+
+Use `defaultValue` for an uncontrolled tabs instance, or provide `value` and
+`onValueChange` when the parent owns selection. The change callback receives an
+object with the selected tab's `value`.
+
+```tsx
+const [value, setValue] = useState('overview');
+
+<Tabs value={value} onValueChange={({ value: nextValue }) => setValue(nextValue)}>
+  <Tabs.List aria-label="Spell details">
+    <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+    <Tabs.Trigger value="effects">Effects</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="overview">Overview content</Tabs.Content>
+  <Tabs.Content value="effects">Effects content</Tabs.Content>
+</Tabs>;
+```
+
+## Keyboard navigation
+
+Tabs use automatic activation by default: moving focus with the arrow keys also
+activates the focused tab. Horizontal tabs use the left and right arrow keys;
+vertical tabs use the up and down arrow keys.
+
+Set `orientation="vertical"` when the tab list is arranged vertically. Set
+`activationMode="manual"` when focus should move without changing selection;
+press Enter or click the focused trigger to activate it.
+
+```tsx
+<Tabs defaultValue="overview" orientation="vertical" activationMode="manual">
+  <Tabs.List aria-label="Spell details">
+    <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+    <Tabs.Trigger value="effects">Effects</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="overview">Overview content</Tabs.Content>
+  <Tabs.Content value="effects">Effects content</Tabs.Content>
+</Tabs>;
+```
+
+## Disabled triggers
+
+Pass `disabled` to a trigger to prevent selection and remove it from keyboard
+navigation. Disabled triggers remain visible so users can understand which
+views are unavailable.
+
+```tsx
+<Tabs defaultValue="overview">
+  <Tabs.List aria-label="Spell details">
+    <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+    <Tabs.Trigger disabled value="effects">
+      Effects (locked)
+    </Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="overview">Overview content</Tabs.Content>
+  <Tabs.Content value="effects">Effects content</Tabs.Content>
+</Tabs>;
+```
+
+## Appearance and orientation
+
+Use `color` with `default`, `success`, `warning`, or `danger`, and `size` with
+`sm`, `md`, or `lg`. `Tabs.Indicator` is optional and renders a moving visual
+indicator for the active trigger.
 
 ```jsx preview
 import React from 'react';
 import { Tabs } from '@nathan3boss/ui/tabs';
 import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame width="400px">
-      <Tabs defaultValue="account">
-        <Tabs.List>
-          <Tabs.Trigger value="account">Account</Tabs.Trigger>
-          <Tabs.Trigger value="password">Password</Tabs.Trigger>
-          <Tabs.Trigger value="notifications">Notifications</Tabs.Trigger>
-        </Tabs.List>
-        <Tabs.Content value="account">Make changes to your account here.</Tabs.Content>
-        <Tabs.Content value="password">Change your password here.</Tabs.Content>
-        <Tabs.Content value="notifications">
-          Adjust alerts, updates, and journey reports here.
-        </Tabs.Content>
-      </Tabs>
-    </ExampleFrame>
-  );
-};
+export default () => (
+  <ExampleFrame width="420px">
+    <Tabs color="success" size="lg" defaultValue="overview">
+      <Tabs.List aria-label="Spell details">
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="effects">Effects</Tabs.Trigger>
+        <Tabs.Indicator />
+      </Tabs.List>
+      <Tabs.Content value="overview">A friendly overview.</Tabs.Content>
+      <Tabs.Content value="effects">A few magical effects.</Tabs.Content>
+    </Tabs>
+  </ExampleFrame>
+);
 ```
 
 ## API
 
-<API moduleName="Tabs" />
+The public compound API includes `Tabs.Root`, `Tabs.List`, `Tabs.Trigger`,
+`Tabs.Content`, and the optional `Tabs.Indicator`. `Tabs` is also callable as
+the root component, so both `<Tabs.Root>` and `<Tabs>` are supported.

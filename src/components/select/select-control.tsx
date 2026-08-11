@@ -1,91 +1,67 @@
-import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { forwardRef } from 'react';
-import { cx } from 'styled-system/css';
+import { mergeProps } from '@zag-js/react';
 
-import { useSelectContext } from '@/components/select/select.context';
 import {
-  selectControlStyles,
-  selectFieldWrapperStyles,
-  selectIndicatorStyles,
-  selectSideContentStyles,
+  StyledSelectControl,
+  StyledSelectDecorator,
+  StyledSelectIndicator,
+  StyledSelectTrigger,
+  StyledSelectValue,
 } from '@/components/select/select.styles';
+import { useSelectContext } from '@/components/select/select-context';
 import type { SelectControlProps } from '@/types/select';
 
 /**
- * Renders the native select control with design-system styling.
+ * Renders the button trigger backed by Zag's control and trigger getters.
  *
  * @example
  * ```tsx
- * <Select.Control defaultValue="support">
- *   <Select.Item value="support">Support</Select.Item>
- * </Select.Control>
+ * <Select.Control placeholder="Choose a country" />
  * ```
  */
-export const SelectControl = forwardRef<HTMLSelectElement, SelectControlProps>(
-  ({ children, className, endContent, startContent, ...props }, ref) => {
-    const { color, controlId, helperTextId, size, withHelperText } =
-      useSelectContext();
+export const SelectControl = ({
+  endContent,
+  placeholder = 'Select an option',
+  startContent,
+  ...props
+}: SelectControlProps) => {
+  const { api, color, hasHelperText, helperTextId, size } = useSelectContext();
+  const triggerProps = mergeProps(props, api.getTriggerProps());
+  const describedBy = [
+    props['aria-describedby'],
+    hasHelperText ? helperTextId : undefined,
+  ]
+    .filter((value): value is string => Boolean(value))
+    .join(' ');
 
-    const describedBy = [
-      props['aria-describedby'],
-      withHelperText ? helperTextId : null,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    return (
-      <div className={selectFieldWrapperStyles()}>
-        {startContent ? (
-          <span
-            className={selectSideContentStyles({
-              placement: 'start',
-              color,
-              size,
-            })}
-          >
+  return (
+    <StyledSelectControl {...api.getControlProps()} data-select-part="control">
+      <StyledSelectTrigger
+        {...triggerProps}
+        aria-describedby={describedBy || undefined}
+        data-color={color}
+        data-select-part="trigger"
+        data-size={size}
+        type="button"
+      >
+        {startContent !== undefined && (
+          <StyledSelectDecorator aria-hidden="true" data-part="start-content">
             {startContent}
-          </span>
-        ) : null}
-        <select
-          {...props}
-          aria-describedby={describedBy || undefined}
-          className={cx(
-            selectControlStyles({
-              hasEndContent: Boolean(endContent),
-              hasStartContent: Boolean(startContent),
-              color,
-              size,
-            }),
-            className,
-          )}
-          id={controlId}
-          ref={ref}
-        >
-          {children}
-        </select>
+          </StyledSelectDecorator>
+        )}
+        <StyledSelectValue {...api.getValueTextProps()} data-part="value-text">
+          {api.empty ? placeholder : api.valueAsString}
+        </StyledSelectValue>
         {endContent ? (
-          <span
-            className={selectSideContentStyles({
-              placement: 'end',
-              color,
-              size,
-            })}
-          >
+          <StyledSelectDecorator aria-hidden="true" data-part="end-content">
             {endContent}
-          </span>
-        ) : null}
-        <span className={selectIndicatorStyles({ color, size })}>
-          <HugeiconsIcon
-            aria-hidden="true"
-            color="currentColor"
-            icon={ArrowDown01Icon}
-            size={16}
+          </StyledSelectDecorator>
+        ) : (
+          <StyledSelectIndicator
+            {...api.getIndicatorProps()}
+            data-part="indicator"
           />
-        </span>
-      </div>
-    );
-  },
-);
-
-SelectControl.displayName = 'Select.Control';
+        )}
+      </StyledSelectTrigger>
+    </StyledSelectControl>
+  );
+};

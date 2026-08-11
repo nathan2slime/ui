@@ -11,8 +11,9 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    label: {
-      control: 'text',
+    color: {
+      control: 'inline-radio',
+      options: ['default', 'success', 'warning', 'danger'],
     },
     labelPlacement: {
       control: 'inline-radio',
@@ -22,29 +23,26 @@ const meta = {
       control: 'inline-radio',
       options: ['sm', 'md', 'lg'],
     },
-    color: {
-      control: 'inline-radio',
-      options: ['default', 'success', 'warning', 'danger'],
-    },
   },
   args: {
-    label: 'Enable alerts',
+    color: 'default',
+    label: 'Enable moonlight mode',
+    labelPlacement: 'end',
     onCheckedChange: fn(),
+    size: 'md',
   },
 } satisfies Meta<typeof Switch>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    defaultChecked: true,
-  },
-};
+export const Default: Story = {};
 
-export const LabelAtStart: Story = {
+export const DynamicLabel: Story = {
   args: {
-    labelPlacement: 'start',
+    checkedLabel: 'On',
+    label: undefined,
+    uncheckedLabel: 'Off',
   },
 };
 
@@ -52,25 +50,6 @@ export const Success: Story = {
   args: {
     color: 'success',
     defaultChecked: true,
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    color: 'warning',
-    defaultChecked: true,
-  },
-};
-
-export const ErrorState: Story = {
-  args: {
-    color: 'danger',
-    defaultChecked: true,
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
+    label: 'Auto-save spells',
   },
 };

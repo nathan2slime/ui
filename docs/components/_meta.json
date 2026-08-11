@@ -1,17 +1,13 @@
 [
-  "badge",
   "button",
-  "card",
+  "checkbox",
   "input",
+  "popover",
+  "radio-group",
+  "theme",
   "select",
-  "tabs",
-  "stepper",
-  "textarea",
-  "tooltip",
-  "typography",
-  "label",
-  "helper-text",
+  "scroll-area",
   "switch",
-  "radio",
-  "spinner"
+  "tabs",
+  "toast"
 ]

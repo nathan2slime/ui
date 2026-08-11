@@ -1,11 +1,11 @@
 # Variable: Input
 
-> `const` **Input**: `ForwardRefExoticComponent`\<`Omit`\<`InputHTMLAttributes`\<`HTMLInputElement`\>, `"color"` \| `"size"`\> & `Partial`\<\{ `color`: `InputColor`; `endAdornment`: `ReactNode`; `endContent`: `ReactNode`; `helperColor`: `HelperTextColor`; `helperText`: `ReactNode`; `size`: `InputSize`; `startAdornment`: `ReactNode`; `startContent`: `ReactNode`; \}\> & `RefAttributes`\<`HTMLInputElement`\>\>
+> `const` **Input**: `ForwardRefExoticComponent`\<`Omit`\<`InputHTMLAttributes`\<`HTMLInputElement`\>, `"color"` \| `"size"`\> & `Partial`\<\{ `className`: `string`; `color`: `InputColor`; `errorText`: `ReactNode`; `fullWidth`: `boolean`; `helperText`: `ReactNode`; `helperTextClassName`: `string`; `inputClassName`: `string`; `label`: `ReactNode`; `labelClassName`: `string`; `size`: `InputSize`; `status`: `InputStatus`; `variant`: `InputVariant`; \}\> & `RefAttributes`\<`HTMLInputElement`\>\>
 
-Renders a styled text input with support for side content, semantic colors, and helper text.
+Renders a themed native input with optional label, helper text, and error text.
 
 ## Example
 
 ```tsx
-<Input placeholder="Enter spell name..." />
+<Input label="Email" placeholder="you@example.com" />
 ```

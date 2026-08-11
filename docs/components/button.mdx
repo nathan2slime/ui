@@ -1,6 +1,6 @@
 # Button
 
-The `Button` component provides a reusable action control with Panda-based styling and a small set of ergonomic variants.
+The `Button` component provides a playful kawaii action control with styled-components-based styling and a small set of ergonomic variants.
 
 ## Usage
 
@@ -14,7 +14,7 @@ import { ExampleFrame } from '@docs-support/example-frame';
 export default () => {
   return (
     <ExampleFrame>
-      <Button>Save changes</Button>
+      <Button>Send gift</Button>
     </ExampleFrame>
   );
 };
@@ -22,7 +22,7 @@ export default () => {
 
 ## Variants
 
-Use `solid` for primary actions, `outline` for secondary actions, and `ghost` for low-emphasis actions.
+Use `solid` for primary game actions, `outline` for secondary actions, `border` for Select-like tactile controls, and `ghost` for low-emphasis actions.
 
 ```jsx preview
 import React from 'react';
@@ -32,9 +32,10 @@ import { ExampleFrame } from '@docs-support/example-frame';
 export default () => {
   return (
     <ExampleFrame direction="row" gap="12px" wrap>
-      <Button variant="solid">Primary</Button>
-      <Button variant="outline">Secondary</Button>
-      <Button variant="ghost">Tertiary</Button>
+      <Button variant="solid">Send gift</Button>
+      <Button variant="outline">View all</Button>
+      <Button variant="border">Choose path</Button>
+      <Button variant="ghost">Friend zone</Button>
     </ExampleFrame>
   );
 };
@@ -52,9 +53,9 @@ import { ExampleFrame } from '@docs-support/example-frame';
 export default () => {
   return (
     <ExampleFrame align="center" direction="row" gap="12px" wrap>
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
+      <Button size="sm">Invite</Button>
+      <Button size="md">Accept</Button>
+      <Button size="lg">Send gift</Button>
     </ExampleFrame>
   );
 };
@@ -72,40 +73,73 @@ import { ExampleFrame } from '@docs-support/example-frame';
 export default () => {
   return (
     <ExampleFrame width="320px">
-      <Button fullWidth>Create account</Button>
+      <Button fullWidth>Accept request</Button>
     </ExampleFrame>
   );
 };
 ```
 
-## Color Tokens
+## Busy and disabled states
 
-The component styles are driven by Panda tokens and ship with the default warm palette. Consumers can still override generated CSS variables at the app root or inside a scoped wrapper.
+Use the native `disabled` prop when an action cannot be used. During an async
+operation, add `aria-busy="true"` so the control communicates that it is
+processing while keeping its label visible.
 
 ```jsx preview
 import React from 'react';
 import { Button } from '@nathan3boss/ui/button';
 import { ExampleFrame } from '@docs-support/example-frame';
 
+export default () => (
+  <ExampleFrame direction="row" gap="12px" wrap>
+    <Button disabled>Already sent</Button>
+    <Button aria-busy="true">Sending gift…</Button>
+  </ExampleFrame>
+);
+```
+
+## Theme customization
+
+Button colors come from the immutable `theme` palette. Wrap the component with `ThemeProvider` to provide a custom palette while keeping the same Button API.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { ThemeProvider, theme } from '@nathan3boss/ui';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+const customTheme = {
+  ...theme,
+  colorPalettes: {
+    ...theme.colorPalettes,
+    default: {
+      ...theme.colorPalettes.default,
+      solid: {
+        ...theme.colorPalettes.default.solid,
+        background: '#ff73c6',
+        backgroundActive: '#d93b8e',
+        backgroundHover: '#ff9ade',
+        border: '#d93b8e',
+        borderHover: '#bd2f79',
+      },
+    },
+  },
+};
+
 export default () => {
   return (
     <ExampleFrame
-      vars={{
-        '--colors-action-solid-primary-background': '#b94955',
-        '--colors-action-solid-primary-background-hover': '#a83d49',
-        '--colors-action-solid-primary-border': '#b94955',
-        '--colors-action-solid-primary-border-hover': '#a83d49',
-        '--colors-action-solid-primary-foreground': '#fffaf5',
-        '--radii-full': '18px',
-      }}
+      align="center"
     >
-      <Button>Launch project</Button>
+      <ThemeProvider theme={customTheme}>
+        <Button>Cute boost</Button>
+      </ThemeProvider>
     </ExampleFrame>
   );
 };
 ```
 
-This gives the library a base color system out of the box while still letting consumers customize tokens without changing component code.
+The root export also provides `GlobalStyles` and `theme` for application-level setup.
 
 ## API
 

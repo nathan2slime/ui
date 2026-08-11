@@ -1,6 +1,3 @@
-import { Add01Icon } from '@hugeicons/core-free-icons';
-
-import { HugeiconsIcon } from '@hugeicons/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
@@ -30,11 +27,11 @@ const meta = {
     },
     variant: {
       control: 'inline-radio',
-      options: ['solid', 'outline', 'ghost'],
+      options: ['solid', 'outline', 'border', 'ghost'],
     },
   },
   args: {
-    children: 'Cast Spell',
+    children: 'Send gift',
     color: 'default',
     onClick: fn(),
   },
@@ -46,48 +43,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     variant: 'solid',
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    variant: 'ghost',
-    size: 'md',
-  },
-};
-
-export const Icon: Story = {
-  args: {
-    'aria-label': 'Add spell',
-    children: <HugeiconsIcon color="currentColor" icon={Add01Icon} size={20} />,
-    size: 'icon',
-    variant: 'solid',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
-    children: 'Begin Journey',
-  },
-};
-
-export const FullWidth: Story = {
-  args: {
-    fullWidth: true,
-    children: 'Open Grimoire',
-  },
-  render: (args) => {
-    return (
-      <div style={{ width: '320px' }}>
-        <Button {...args} />
-      </div>
-    );
   },
 };

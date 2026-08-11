@@ -1,145 +1,106 @@
-import { forwardRef, useEffect, useId, useState } from 'react';
-import { cx } from 'styled-system/css';
+import { forwardRef, useId } from 'react';
 
-import { HelperText } from '@/components/helper-text';
-import { useInputChangeHandler } from '@/components/input/hooks/use-input-change-handler';
 import {
-  inputAdornmentStyles,
-  inputCountStyles,
-  inputFieldWrapperStyles,
-  inputFooterStyles,
-  inputHelperListStyles,
-  inputRootStyles,
-  inputStyles,
+  StyledInputControl,
+  StyledInputHelperText,
+  StyledInputLabel,
+  StyledInputRoot,
 } from '@/components/input/input.styles';
-import { getCharacterLimit } from '@/components/input/utils/get-character-limit';
-import { getValueLength } from '@/components/input/utils/get-value-length';
 import type { InputProps } from '@/types/input';
 
+const joinDescriptionIds = (ids: readonly (string | undefined)[]) => {
+  const descriptionIds = ids.filter(
+    (id): id is string => typeof id === 'string' && id.length > 0,
+  );
+
+  return descriptionIds.length > 0 ? descriptionIds.join(' ') : undefined;
+};
+
 /**
- * Renders a styled text input with support for side content, semantic colors, and helper text.
+ * Renders a themed native input with optional label, helper text, and error text.
  *
  * @example
  * ```tsx
- * <Input placeholder="Enter spell name..." />
+ * <Input label="Email" placeholder="you@example.com" />
  * ```
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
+      'aria-describedby': ariaDescribedBy,
+      'aria-invalid': ariaInvalid,
       className,
-      defaultValue,
-      disabled = false,
-      endContent,
-      endAdornment,
       color = 'default',
+      disabled,
+      errorText,
+      fullWidth = false,
       helperText,
-      helperColor = 'default',
+      helperTextClassName,
       id,
-      max,
-      maxLength,
-      onChange,
+      inputClassName,
+      label,
+      labelClassName,
       size = 'md',
-      startContent,
-      startAdornment,
-      type = 'text',
-      value,
+      status = 'default',
+      variant = 'default',
       ...props
     },
     ref,
   ) => {
-    const helperBaseId = useId();
-    const resolvedStartContent = startContent ?? startAdornment;
-    const resolvedEndContent = endContent ?? endAdornment;
-    const characterLimit = getCharacterLimit(max, maxLength, type);
-    const effectiveMaxLength = maxLength ?? characterLimit ?? undefined;
-    const [currentLength, setCurrentLength] = useState(() =>
-      getValueLength(value ?? defaultValue),
-    );
-
-    useEffect(() => {
-      if (value === undefined) {
-        return;
-      }
-
-      setCurrentLength(getValueLength(value));
-    }, [value]);
-
-    const helperTextId = helperText ? `${helperBaseId}-helper-text` : undefined;
-    const describedBy = [props['aria-describedby'], helperTextId]
-      .filter(Boolean)
-      .join(' ');
-    const showFooter = Boolean(helperText) || characterLimit !== null;
-    const handleChange = useInputChangeHandler({
-      onChange,
-      setCurrentLength,
-    });
+    const generatedId = useId();
+    const inputId = id ?? `input-${generatedId}`;
+    const helperTextId = helperText ? `${inputId}-helper` : undefined;
+    const errorTextId = errorText ? `${inputId}-error` : undefined;
+    const messageId = errorTextId ?? helperTextId;
+    const describedBy = joinDescriptionIds([ariaDescribedBy, messageId]);
+    const currentStatus = errorText ? 'danger' : status;
+    const invalid = errorText ? true : ariaInvalid;
 
     return (
-      <div className={inputRootStyles({ size })}>
-        <div className={inputFieldWrapperStyles()}>
-          {resolvedStartContent ? (
-            <span
-              className={inputAdornmentStyles({
-                placement: 'start',
-                color,
-                size,
-              })}
-            >
-              {resolvedStartContent}
-            </span>
-          ) : null}
-          <input
-            {...props}
-            aria-describedby={describedBy || undefined}
-            defaultValue={defaultValue}
-            id={id}
-            max={max}
-            maxLength={effectiveMaxLength}
-            ref={ref}
-            className={cx(
-              inputStyles({
-                hasEndAdornment: Boolean(resolvedEndContent),
-                hasStartAdornment: Boolean(resolvedStartContent),
-                color,
-                size,
-              }),
-              className,
-            )}
-            disabled={disabled}
-            onChange={handleChange}
-            type={type}
-            value={value}
-          />
-          {resolvedEndContent ? (
-            <span
-              className={inputAdornmentStyles({
-                placement: 'end',
-                color,
-                size,
-              })}
-            >
-              {resolvedEndContent}
-            </span>
-          ) : null}
-        </div>
-        {showFooter ? (
-          <div className={inputFooterStyles()}>
-            {helperText ? (
-              <div className={inputHelperListStyles()}>
-                <HelperText id={helperTextId} color={helperColor} size={size}>
-                  {helperText}
-                </HelperText>
-              </div>
-            ) : null}
-            {characterLimit !== null ? (
-              <span className={inputCountStyles({ size })}>
-                {currentLength}/{characterLimit}
-              </span>
-            ) : null}
-          </div>
+      <StyledInputRoot
+        className={className}
+        data-color={color}
+        data-disabled={disabled ? 'true' : undefined}
+        data-full-width={fullWidth ? 'true' : 'false'}
+        data-part="root"
+        data-size={size}
+        data-status={currentStatus}
+        data-variant={variant}
+      >
+        {label ? (
+          <StyledInputLabel
+            className={labelClassName}
+            data-part="label"
+            data-status={currentStatus}
+            htmlFor={inputId}
+          >
+            {label}
+          </StyledInputLabel>
         ) : null}
-      </div>
+        <StyledInputControl
+          {...props}
+          aria-describedby={describedBy}
+          aria-invalid={invalid}
+          className={inputClassName}
+          data-part="input"
+          data-size={size}
+          data-status={currentStatus}
+          data-variant={variant}
+          disabled={disabled}
+          id={inputId}
+          ref={ref}
+        />
+        {errorText || helperText ? (
+          <StyledInputHelperText
+            className={helperTextClassName}
+            data-part="helper-text"
+            data-status={currentStatus}
+            id={messageId}
+          >
+            {errorText ?? helperText}
+          </StyledInputHelperText>
+        ) : null}
+      </StyledInputRoot>
     );
   },
 );

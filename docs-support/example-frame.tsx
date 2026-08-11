@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@nathan3boss/ui';
 import type { CSSProperties, PropsWithChildren } from 'react';
 
 const alignmentMap = {
@@ -91,7 +92,11 @@ export const ExampleFrame = ({
     style.maxWidth = maxWidth;
   }
 
-  return <div style={{ ...style, ...vars }}>{children}</div>;
+  return (
+    <ThemeProvider>
+      <div style={{ ...style, ...vars }}>{children}</div>
+    </ThemeProvider>
+  );
 };
 
 /**

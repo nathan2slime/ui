@@ -1,0 +1,44 @@
+# Theme
+
+`ThemeProvider` is the library wrapper around styled-components' provider. It
+uses the library's default `theme` automatically when no `theme` prop is
+provided.
+
+## Default theme
+
+Wrap the application without passing a prop to use the default tokens:
+
+```tsx
+import { ThemeProvider } from '@nathan3boss/ui/theme';
+
+export function AppRoot() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+}
+```
+
+The same provider is also available from the package root.
+
+## Custom theme
+
+Pass a compatible `UiTheme` object when the application needs an override. The
+provider does not merge themes; the value you pass becomes the styled-components
+theme.
+
+```tsx
+import { ThemeProvider, theme } from '@nathan3boss/ui/theme';
+
+const customTheme = {
+  ...theme,
+  navy: '#101010',
+};
+
+<ThemeProvider theme={customTheme}>
+  <App />
+</ThemeProvider>;
+```
+
+`theme` is also available from the package root for application-level setup.

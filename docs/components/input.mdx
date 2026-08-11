@@ -1,26 +1,10 @@
 # Input
 
-The `Input` component provides a styled text field with optional side content, validation states, helper text, and character counting.
+The `Input` component wraps a native `<input>` with the library's playful tactile styling, accessible labeling, and helper or error messaging.
 
 ## Usage
 
-```jsx preview
-import React from 'react';
-import { Input } from '@nathan3boss/ui/input';
-import { ExampleFrame } from '@docs-support/example-frame';
-
-export default () => {
-  return (
-    <ExampleFrame width="320px">
-      <Input placeholder="Enter spell name..." />
-    </ExampleFrame>
-  );
-};
-```
-
-## Helper Text
-
-Use `helperText` and `helperColor` to communicate neutral guidance, confirmations, errors, or warnings below the field.
+Use `label` for the visible field name and pass any native input props directly to the component.
 
 ```jsx preview
 import React from 'react';
@@ -31,59 +15,89 @@ export default () => {
   return (
     <ExampleFrame width="320px">
       <Input
-        helperText="Choose a short and memorable artifact name."
-        helperColor="default"
-        placeholder="Artifact tag..."
+        helperText="Choose the name shown in your cute profile."
+        label="Nickname"
+        placeholder="Akasa"
       />
     </ExampleFrame>
   );
 };
 ```
 
-## Side Content
+## Sizes
 
-Use `startContent` and `endContent` for inline visual context such as search icons or validation cues.
+Use `size` to adjust the field height and text scale.
 
 ```jsx preview
 import React from 'react';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { Search01Icon } from '@hugeicons/core-free-icons';
 import { Input } from '@nathan3boss/ui/input';
 import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame width="320px">
-      <Input
-        placeholder="Search grimoires..."
-        startContent={<HugeiconsIcon color="currentColor" icon={Search01Icon} size={18} />}
-      />
-    </ExampleFrame>
-  );
-};
+export default () => (
+  <ExampleFrame width="320px">
+    <Input label="Small" placeholder="sm" size="sm" />
+    <Input label="Medium" placeholder="md" size="md" />
+    <Input label="Large" placeholder="lg" size="lg" />
+  </ExampleFrame>
+);
 ```
 
-## Character Count
+## Variants
 
-Passing `max` or `maxLength` to text-like inputs will display the current character count beside the helper area.
+Use `border` when the input should visually match the Select trigger's tactile bordered surface.
 
 ```jsx preview
 import React from 'react';
 import { Input } from '@nathan3boss/ui/input';
 import { ExampleFrame } from '@docs-support/example-frame';
 
-export default () => {
-  return (
-    <ExampleFrame width="320px">
-      <Input
-        helperText="This field supports up to 40 characters."
-        helperColor="success"
-        max={40}
-        placeholder="Artifact tag..."
-      />
-    </ExampleFrame>
-  );
-};
+export default () => (
+  <ExampleFrame width="320px">
+    <Input
+      helperText="Matches the Select control treatment."
+      label="Search"
+      placeholder="Find a spell"
+      variant="border"
+    />
+  </ExampleFrame>
+);
+```
+
+## Helper and error text
+
+`helperText` is connected with `aria-describedby`. When `errorText` is present, it replaces the helper message and marks the input invalid.
+
+```jsx preview
+import React from 'react';
+import { Input } from '@nathan3boss/ui/input';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="320px">
+    <Input
+      color="danger"
+      errorText="Email is required before sending."
+      label="Email"
+      placeholder="you@example.com"
+    />
+  </ExampleFrame>
+);
+```
+
+## Full width
+
+Set `fullWidth` when the field should stretch to its container.
+
+```jsx preview
+import React from 'react';
+import { Input } from '@nathan3boss/ui/input';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="360px">
+    <Input fullWidth label="Search" placeholder="Find a spell" />
+  </ExampleFrame>
+);
 ```
 
 ## API

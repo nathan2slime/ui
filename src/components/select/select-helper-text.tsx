@@ -1,15 +1,14 @@
-import { useEffect } from 'react';
-
-import { HelperText } from '@/components/helper-text';
-import { useSelectContext } from '@/components/select/select.context';
+import { StyledSelectHelperText } from '@/components/select/select.styles';
+import { useSelectContext } from '@/components/select/select-context';
 import type { SelectHelperTextProps } from '@/types/select';
 
 /**
- * Renders helper text associated with the select control.
+ * Renders helper text referenced by the select trigger through
+ * `aria-describedby`.
  *
  * @example
  * ```tsx
- * <Select.HelperText>Choose a valid option.</Select.HelperText>
+ * <Select.HelperText>Choose one option.</Select.HelperText>
  * ```
  */
 export const SelectHelperText = ({
@@ -17,25 +16,21 @@ export const SelectHelperText = ({
   color,
   ...props
 }: SelectHelperTextProps) => {
-  const { helperColor, helperTextId, registerHelperText, size } =
-    useSelectContext();
-
-  useEffect(() => {
-    registerHelperText(true);
-
-    return () => {
-      registerHelperText(false);
-    };
-  }, [registerHelperText]);
+  const { helperColor, helperTextId, size } = useSelectContext();
+  const helperProps = {
+    ...props,
+    id: helperTextId,
+  };
 
   return (
-    <HelperText
-      {...props}
+    <StyledSelectHelperText
+      {...helperProps}
+      data-color={color ?? helperColor}
+      data-part="helper-text"
+      data-size={size}
       id={helperTextId}
-      color={color ?? helperColor}
-      size={size}
     >
       {children}
-    </HelperText>
+    </StyledSelectHelperText>
   );
 };

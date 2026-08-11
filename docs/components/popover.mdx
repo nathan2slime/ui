@@ -1,0 +1,94 @@
+# Popover
+
+`Popover` is a Zag-backed floating dialog for contextual content. It renders a
+trigger button, a positioned dialog surface, optional title and description
+elements, body content, and a close trigger.
+
+## Basic Usage
+
+Provide `trigger`, `title`, and optional `description`. Children render as the
+main popover body.
+
+```jsx preview
+import React from 'react';
+import { Button } from '@nathan3boss/ui/button';
+import { Popover } from '@nathan3boss/ui/popover';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="360px">
+    <Popover
+      trigger="Click me"
+      title="Presenters"
+      description="Description"
+    >
+      <Button size="sm">Action Button</Button>
+    </Popover>
+  </ExampleFrame>
+);
+```
+
+## Controlled State
+
+Use `open` with `onOpenChange` when the parent owns visibility. The callback
+receives Zag's `{ open }` details object.
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Popover
+  open={open}
+  onOpenChange={({ open }) => setOpen(open)}
+  trigger="Open details"
+  title="Details"
+>
+  Controlled content
+</Popover>;
+```
+
+## Positioning And Portals
+
+`Popover` forwards Zag's `positioning`, `modal`, `portalled`, `closeOnEscape`,
+and outside-interaction props. Content is portalled by default, matching Zag's
+machine behavior.
+
+```tsx
+<Popover
+  positioning={{ placement: 'bottom-end', gutter: 8 }}
+  portalled={false}
+  trigger="Inline popover"
+  title="Inline"
+>
+  This content stays near the trigger in the DOM.
+</Popover>;
+```
+
+## Appearance
+
+Use `color` with `default`, `success`, `warning`, or `danger`, and `size` with
+`sm`, `md`, or `lg`. Set `showArrow` to render Zag's arrow parts.
+
+```jsx preview
+import React from 'react';
+import { Popover } from '@nathan3boss/ui/popover';
+import { ExampleFrame } from '@docs-support/example-frame';
+
+export default () => (
+  <ExampleFrame width="360px">
+    <Popover
+      color="success"
+      showArrow
+      size="lg"
+      trigger="Open reward"
+      title="Quest reward"
+      description="Choose before leaving the guild hall."
+    >
+      A tiny bonus is waiting inside.
+    </Popover>
+  </ExampleFrame>
+);
+```
+
+## API
+
+<API moduleName="Popover" />

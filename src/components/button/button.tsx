@@ -1,11 +1,10 @@
 import { forwardRef } from 'react';
-import { cx } from 'styled-system/css';
 
-import { buttonStyles } from '@/components/button/button.styles';
+import { StyledButton } from '@/components/button/button.styles';
 import type { ButtonProps } from '@/types/button';
 
 /**
- * Renders an accessible action control with Panda-powered size, color, and variant styles.
+ * Renders an accessible action control with styled-components-powered size, color, and variant styles.
  *
  * @example
  * ```tsx
@@ -27,19 +26,20 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     return (
-      <button
+      <StyledButton
         {...props}
         ref={ref}
-        className={cx(
-          buttonStyles({ color, fullWidth, size, variant }),
-          className,
-        )}
+        className={className}
+        $color={color}
+        $fullWidth={fullWidth}
+        $size={size}
+        $variant={variant}
         data-size={size}
         data-variant={variant}
         type={type}
       >
         {children}
-      </button>
+      </StyledButton>
     );
   },
 );

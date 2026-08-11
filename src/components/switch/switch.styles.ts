@@ -1,227 +1,140 @@
-import { cva } from 'styled-system/css';
+import styled from 'styled-components';
 
-export const switchRootStyles = cva({
-  base: {
-    alignItems: 'center',
-    color: 'textPrimary',
-    cursor: 'pointer',
-    display: 'inline-flex',
-    gap: '0.75rem',
-    lineHeight: '1.3',
-    userSelect: 'none',
-  },
-  variants: {
-    disabled: {
-      false: {},
-      true: {
-        cursor: 'not-allowed',
-        opacity: 'disabled',
-      },
-    },
-    labelPlacement: {
-      end: {
-        flexDirection: 'row',
-      },
-      start: {
-        flexDirection: 'row-reverse',
-      },
-    },
-    size: {
-      sm: {
-        gap: '0.5rem',
-      },
-      md: {
-        gap: '0.75rem',
-      },
-      lg: {
-        gap: '1rem',
-      },
-    },
-  },
-  defaultVariants: {
-    disabled: false,
-    labelPlacement: 'end',
-    size: 'md',
-  },
-});
+import type { UiStyledExecutionContext } from '@/types/styled-execution-context';
 
-export const switchControlStyles = cva({
-  base: {
-    alignItems: 'center',
-    display: 'inline-flex',
-    flexShrink: '0',
-    justifyContent: 'center',
-    position: 'relative',
-  },
-  variants: {
-    size: {
-      sm: {
-        height: '1.25rem',
-        width: '2.25rem',
-        '& input:checked + span::after': {
-          transform: 'translate(1rem, -50%)',
-        },
-      },
-      md: {
-        height: '1.5rem',
-        width: '2.75rem',
-        '& input:checked + span::after': {
-          transform: 'translate(1.25rem, -50%)',
-        },
-      },
-      lg: {
-        height: '1.75rem',
-        width: '3.25rem',
-        '& input:checked + span::after': {
-          transform: 'translate(1.6rem, -50%)',
-        },
-      },
-    },
-    color: {
-      default: {
-        '& input:checked + span': {
-          backgroundColor: 'surfaceAccentStrong',
-          borderColor: 'borderAccentStrong',
-        },
-        '& input:checked + span::after': {
-          backgroundColor: 'actionSolidPrimaryForeground',
-        },
-      },
-      success: {
-        '& input:checked + span': {
-          backgroundColor: 'actionSolidSuccessBackground',
-          borderColor: 'actionSolidSuccessBorder',
-        },
-        '& input:checked + span::after': {
-          backgroundColor: 'actionSolidSuccessForeground',
-        },
-      },
-      warning: {
-        '& input:checked + span': {
-          backgroundColor: 'actionSolidWarningBackground',
-          borderColor: 'actionSolidWarningBorder',
-        },
-        '& input:checked + span::after': {
-          backgroundColor: 'actionSolidWarningForeground',
-        },
-      },
-      danger: {
-        '& input:checked + span': {
-          backgroundColor: 'actionSolidErrorBackground',
-          borderColor: 'actionSolidErrorBorder',
-        },
-        '& input:checked + span::after': {
-          backgroundColor: 'actionSolidErrorForeground',
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    color: 'default',
-    size: 'md',
-  },
-});
+export const StyledSwitchRoot = styled.label`
+  --switch-navy: ${({ theme }: UiStyledExecutionContext) => theme?.navy};
+  --switch-ink: ${({ theme }: UiStyledExecutionContext) => theme?.ink};
+  --switch-paper: ${({ theme }: UiStyledExecutionContext) => theme?.paper};
+  --switch-checked: ${({ theme }: UiStyledExecutionContext) => theme?.sky};
+  --switch-checked-foreground: ${({ theme }: UiStyledExecutionContext) =>
+    theme?.colorPalettes.default.solid.foreground};
+  --switch-width: 3.05rem;
+  --switch-height: 1.65rem;
+  --switch-padding: 0.18rem;
+  --switch-thumb-size: calc(var(--switch-height) - (var(--switch-padding) * 2));
+  --switch-thumb-offset: calc(var(--switch-width) - var(--switch-thumb-size) - (var(--switch-padding) * 2));
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--switch-ink);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: ${({ theme }: UiStyledExecutionContext) =>
+    theme?.fontFamilies.body};
+  font-weight: 800;
+  gap: 0.75rem;
+  line-height: 1.25;
+  user-select: none;
 
-export const switchInputStyles = cva({
-  base: {
-    appearance: 'none',
-    cursor: 'pointer',
-    height: '100%',
-    inset: '0',
-    margin: '0',
-    opacity: '0',
-    position: 'absolute',
-    width: '100%',
-    zIndex: '1',
-    _focusVisible: {
-      '& + span': {
-        outlineColor: 'brandPrimary',
-        outlineOffset: '2px',
-        outlineStyle: 'solid',
-        outlineWidth: '2px',
-      },
-    },
-    _disabled: {
-      cursor: 'not-allowed',
-    },
-  },
-});
+  &[data-color='success'] {
+    --switch-checked: ${({ theme }: UiStyledExecutionContext) =>
+      theme?.mint ?? theme?.colorPalettes.success.solid.background};
+    --switch-checked-foreground: ${({ theme }: UiStyledExecutionContext) =>
+      theme?.colorPalettes.success.solid.foreground};
+  }
 
-export const switchTrackStyles = cva({
-  base: {
-    backgroundColor: 'surfaceInteractiveMuted',
-    borderColor: 'borderInteractiveMuted',
-    borderRadius: 'full',
-    borderWidth: '1px',
-    display: 'inline-flex',
-    height: '100%',
-    position: 'relative',
-    transitionDuration: 'fast',
-    transitionProperty: 'background-color, border-color',
-    transitionTimingFunction: 'ease',
-    width: '100%',
-    '&::after': {
-      backgroundColor: 'surfaceBase',
-      borderColor: 'borderSubtle',
-      borderWidth: '1px',
-      borderRadius: 'full',
-      content: "''",
-      left: '0.15rem',
-      position: 'absolute',
-      top: '50%',
-      transform: 'translate(0, -50%)',
-      transitionDuration: 'fast',
-      transitionProperty: 'transform, background-color',
-      transitionTimingFunction: 'ease',
-    },
-  },
-  variants: {
-    size: {
-      sm: {
-        '&::after': {
-          height: '0.95rem',
-          width: '0.95rem',
-        },
-      },
-      md: {
-        '&::after': {
-          height: '1.2rem',
-          width: '1.2rem',
-        },
-      },
-      lg: {
-        '&::after': {
-          height: '1.35rem',
-          width: '1.35rem',
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-  },
-});
+  &[data-color='warning'] {
+    --switch-checked: ${({ theme }: UiStyledExecutionContext) =>
+      theme?.yellow ?? theme?.colorPalettes.warning.solid.background};
+    --switch-checked-foreground: ${({ theme }: UiStyledExecutionContext) =>
+      theme?.colorPalettes.warning.solid.foreground};
+  }
 
-export const switchLabelStyles = cva({
-  base: {
-    color: 'textPrimary',
-    fontFamily: 'sansDisplay',
-    fontWeight: 'medium',
-  },
-  variants: {
-    size: {
-      sm: {
-        fontSize: 'uiSm',
-      },
-      md: {
-        fontSize: 'uiMd',
-      },
-      lg: {
-        fontSize: 'uiLg',
-      },
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-  },
-});
+  &[data-color='danger'] {
+    --switch-checked: ${({ theme }: UiStyledExecutionContext) =>
+      theme?.pink ?? theme?.colorPalettes.danger.solid.background};
+    --switch-checked-foreground: ${({ theme }: UiStyledExecutionContext) =>
+      theme?.colorPalettes.danger.solid.foreground};
+  }
+
+  &[data-size='sm'] {
+    --switch-width: 2.55rem;
+    --switch-height: 1.42rem;
+    gap: 0.55rem;
+    font-size: 0.82rem;
+  }
+
+  &[data-size='md'] {
+    font-size: 0.9rem;
+  }
+
+  &[data-size='lg'] {
+    --switch-width: 3.55rem;
+    --switch-height: 1.9rem;
+    gap: 0.9rem;
+    font-size: 1rem;
+  }
+
+  &[data-label-placement='start'] {
+    flex-direction: row-reverse;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    filter: saturate(0.65);
+    opacity: 0.62;
+  }
+`;
+
+export const StyledSwitchControl = styled.span`
+  align-items: center;
+  background: color-mix(in srgb, var(--switch-paper) 82%, var(--switch-navy));
+  border: 0.14rem solid var(--switch-navy);
+  border-radius: 999px;
+  box-shadow: 0 0.18rem 0 var(--switch-navy);
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: var(--switch-height);
+  padding: var(--switch-padding);
+  position: relative;
+  transition-duration: 160ms;
+  transition-property: background-color, border-color, box-shadow;
+  transition-timing-function: ease;
+  width: var(--switch-width);
+
+  &[data-state='checked'] {
+    background: var(--switch-checked);
+  }
+
+  &[data-focus-visible] {
+    outline: 0.16rem solid var(--switch-checked);
+    outline-offset: 0.2rem;
+  }
+
+  &[data-active] {
+    box-shadow: 0 0.08rem 0 var(--switch-navy);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+`;
+
+export const StyledSwitchThumb = styled.span`
+  background: var(--switch-paper);
+  border: 0.13rem solid var(--switch-navy);
+  border-radius: 999px;
+  box-shadow: 0 0.1rem 0 color-mix(in srgb, var(--switch-navy) 55%, transparent);
+  box-sizing: border-box;
+  display: block;
+  height: var(--switch-thumb-size);
+  transform: translateX(0);
+  transition-duration: 160ms;
+  transition-property: background-color, transform;
+  transition-timing-function: ease;
+  width: var(--switch-thumb-size);
+
+  &[data-state='checked'] {
+    background: var(--switch-checked-foreground);
+    transform: translateX(var(--switch-thumb-offset));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+`;
+
+export const StyledSwitchLabel = styled.span`
+  min-width: 0;
+`;

@@ -1,52 +1,62 @@
 import { describe, expect, test } from '@rstest/core';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import type { ReactElement } from 'react';
 
 import { Switch } from '@/components/switch';
+import { ThemeProvider, theme } from '@/theme';
+
+const renderWithTheme = (element: ReactElement) =>
+  render(<ThemeProvider theme={theme}>{element}</ThemeProvider>);
 
 describe('Switch', () => {
-  test('renders the provided label and keeps checkbox semantics', async () => {
-    render(<Switch label="Enable cloak" />);
+  test('renders a labeled checkbox switch', () => {
+    renderWithTheme(<Switch label="Enable cloak" />);
 
     const checkbox = screen.getByRole('checkbox', { name: 'Enable cloak' });
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).not.toBeChecked();
   });
 
-  test('toggles its checked state when clicked in uncontrolled mode', async () => {
-    render(<Switch label="Receive alerts" />);
+  test('toggles in uncontrolled mode', async () => {
+    renderWithTheme(<Switch label="Receive alerts" />);
 
     const checkbox = screen.getByRole('checkbox', { name: 'Receive alerts' });
-    expect(checkbox).not.toBeChecked();
     fireEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
+
+    await waitFor(() => expect(checkbox).toBeChecked());
   });
 
-  test('respects the disabled attribute', async () => {
-    render(<Switch disabled label="Disabled control" />);
+  test('calls onCheckedChange with Zag details', async () => {
+    const checkedStates: boolean[] = [];
 
-    const checkbox = screen.getByRole('checkbox', { name: 'Disabled control' });
-    expect(checkbox).toBeDisabled();
-  });
-
-  test('calls onCheckedChange with the latest state', async () => {
-    const states: boolean[] = [];
-    render(
+    renderWithTheme(
       <Switch
         label="Notify guild"
-        onCheckedChange={(checked) => states.push(checked)}
+        onCheckedChange={({ checked }) => checkedStates.push(checked)}
       />,
     );
-    const checkbox = screen.getByRole('checkbox', { name: 'Notify guild' });
-    fireEvent.click(checkbox);
-    expect(states).toEqual([true]);
+
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Notify guild' }));
+
+    await waitFor(() => expect(checkedStates).toEqual([true]));
   });
 
-  test('renders the label before the control when labelPlacement is start', async () => {
-    const { container } = render(
-      <Switch label="Place text first" labelPlacement="start" />,
-    );
+  test('respects disabled state', () => {
+    renderWithTheme(<Switch disabled label="Disabled control" />);
 
-    const label = container.querySelector('label');
-    expect(label?.firstElementChild?.textContent).toContain('Place text first');
+    expect(
+      screen.getByRole('checkbox', { name: 'Disabled control' }),
+    ).toBeDisabled();
+  });
+
+  test('falls back to dynamic checked and unchecked labels', async () => {
+    renderWithTheme(<Switch />);
+
+    const checkbox = screen.getByRole('checkbox', { name: 'Off' });
+    fireEvent.click(checkbox);
+
+    await waitFor(() => {
+      expect(screen.getByRole('checkbox', { name: 'On' })).toBeChecked();
+    });
   });
 });

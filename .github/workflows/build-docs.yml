@@ -29,8 +29,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate Panda artifacts
-        run: pnpm exec panda codegen
-
       - name: Build docs
         run: pnpm run doc:build

@@ -1,55 +1,50 @@
-import { cx } from 'styled-system/css';
+import { mergeProps } from '@zag-js/react';
+import { type MotionProps, motion } from 'motion/react';
+import type { ComponentProps, ComponentType } from 'react';
 
-import { useTabsTriggerHandlers } from '@/components/tabs/hooks/use-tabs-trigger-handlers';
-import { useTabsContext } from '@/components/tabs/tabs.context';
-import { tabsTriggerStyles } from '@/components/tabs/tabs.styles';
+import { StyledTabsTrigger } from '@/components/tabs/tabs.styles';
+import { useTabsContext } from '@/components/tabs/tabs-context';
 import type { TabsTriggerProps } from '@/types/tabs';
 
-/**
- * Activates a matching tabs content panel.
- *
- * @example
- * ```tsx
- * <Tabs.Trigger value="account">Account</Tabs.Trigger>
- * ```
- */
+type MotionTabsTriggerProps = ComponentProps<typeof StyledTabsTrigger> &
+  Pick<MotionProps, 'transition' | 'whileHover' | 'whileTap'>;
+
+const MotionTabsTrigger = motion.create(
+  StyledTabsTrigger,
+) as unknown as ComponentType<MotionTabsTriggerProps>;
+
+const tabsTriggerHoverMotion = { y: -1 } as const;
+const tabsTriggerTapMotion = { y: 1 } as const;
+const tabsTriggerMotionTransition = {
+  duration: 0.14,
+  ease: 'easeOut',
+} as const;
+
+/** Renders a selectable, optionally disabled tab trigger. */
 export const TabsTrigger = ({
   children,
-  className,
   disabled,
-  onClick,
-  onKeyDown,
   value,
   ...props
 }: TabsTriggerProps) => {
-  const { baseId, onValueChange, value: selectedValue } = useTabsContext();
-  const isActive = selectedValue === value;
-  const triggerId = `${baseId}-trigger-${value}`;
-  const contentId = `${baseId}-content-${value}`;
-  const { handleClick, handleKeyDown } = useTabsTriggerHandlers({
-    disabled: Boolean(disabled),
-    onClick,
-    onKeyDown,
-    onValueChange,
-    value,
-  });
+  const { api, color, size } = useTabsContext();
+  const triggerProps = mergeProps(
+    { disabled, ...props },
+    api.getTriggerProps({ value }),
+  );
 
   return (
-    <button
-      {...props}
-      aria-controls={contentId}
-      aria-selected={isActive}
-      className={cx(tabsTriggerStyles({ active: isActive }), className)}
-      data-state={isActive ? 'active' : 'inactive'}
-      disabled={disabled}
-      id={triggerId}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      role="tab"
-      tabIndex={isActive ? 0 : -1}
+    <MotionTabsTrigger
+      {...triggerProps}
+      data-color={color}
+      data-part="trigger"
+      data-size={size}
+      transition={tabsTriggerMotionTransition}
       type="button"
+      whileHover={disabled ? undefined : tabsTriggerHoverMotion}
+      whileTap={disabled ? undefined : tabsTriggerTapMotion}
     >
       {children}
-    </button>
+    </MotionTabsTrigger>
   );
 };

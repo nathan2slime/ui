@@ -14,82 +14,60 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
-    "./badge": {
-      "types": "./dist/components/badge/index.d.ts",
-      "import": "./dist/badge.js",
-      "default": "./dist/badge.js"
+    "./checkbox": {
+      "types": "./dist/checkbox.d.ts",
+      "import": "./dist/checkbox.js",
+      "default": "./dist/checkbox.js"
     },
     "./button": {
-      "types": "./dist/components/button/index.d.ts",
+      "types": "./dist/button.d.ts",
       "import": "./dist/button.js",
       "default": "./dist/button.js"
     },
-    "./card": {
-      "types": "./dist/components/card/index.d.ts",
-      "import": "./dist/card.js",
-      "default": "./dist/card.js"
-    },
-    "./helper-text": {
-      "types": "./dist/components/helper-text/index.d.ts",
-      "import": "./dist/helper-text.js",
-      "default": "./dist/helper-text.js"
-    },
     "./input": {
-      "types": "./dist/components/input/index.d.ts",
+      "types": "./dist/input.d.ts",
       "import": "./dist/input.js",
       "default": "./dist/input.js"
     },
-    "./label": {
-      "types": "./dist/components/label/index.d.ts",
-      "import": "./dist/label.js",
-      "default": "./dist/label.js"
+    "./theme": {
+      "types": "./dist/theme.d.ts",
+      "import": "./dist/theme.js",
+      "default": "./dist/theme.js"
     },
-    "./radio": {
-      "types": "./dist/components/radio/index.d.ts",
-      "import": "./dist/radio.js",
-      "default": "./dist/radio.js"
+    "./popover": {
+      "types": "./dist/popover.d.ts",
+      "import": "./dist/popover.js",
+      "default": "./dist/popover.js"
+    },
+    "./radio-group": {
+      "types": "./dist/radio-group.d.ts",
+      "import": "./dist/radio-group.js",
+      "default": "./dist/radio-group.js"
     },
     "./select": {
-      "types": "./dist/components/select/index.d.ts",
+      "types": "./dist/select.d.ts",
       "import": "./dist/select.js",
       "default": "./dist/select.js"
     },
-    "./spinner": {
-      "types": "./dist/components/spinner/index.d.ts",
-      "import": "./dist/spinner.js",
-      "default": "./dist/spinner.js"
+    "./scroll-area": {
+      "types": "./dist/scroll-area.d.ts",
+      "import": "./dist/scroll-area.js",
+      "default": "./dist/scroll-area.js"
     },
-    "./stepper": {
-      "types": "./dist/components/stepper/index.d.ts",
-      "import": "./dist/stepper.js",
-      "default": "./dist/stepper.js"
-    },
-    "./styles": "./dist/index.css",
-    "./tabs": {
-      "types": "./dist/components/tabs/index.d.ts",
-      "import": "./dist/tabs.js",
-      "default": "./dist/tabs.js"
-    },
-    "./textarea": {
-      "types": "./dist/components/textarea/index.d.ts",
-      "import": "./dist/textarea.js",
-      "default": "./dist/textarea.js"
-    },
-    "./tooltip": {
-      "types": "./dist/components/tooltip/index.d.ts",
-      "import": "./dist/tooltip.js",
-      "default": "./dist/tooltip.js"
-    },
-    "./styles.css": "./dist/index.css",
     "./switch": {
-      "types": "./dist/components/switch/index.d.ts",
+      "types": "./dist/switch.d.ts",
       "import": "./dist/switch.js",
       "default": "./dist/switch.js"
     },
-    "./typography": {
-      "types": "./dist/components/typography/index.d.ts",
-      "import": "./dist/typography.js",
-      "default": "./dist/typography.js"
+    "./tabs": {
+      "types": "./dist/tabs.d.ts",
+      "import": "./dist/tabs.js",
+      "default": "./dist/tabs.js"
+    },
+    "./toast": {
+      "types": "./dist/toast.d.ts",
+      "import": "./dist/toast.js",
+      "default": "./dist/toast.js"
     }
   },
   "types": "./dist/index.d.ts",
@@ -125,7 +103,7 @@
     "@changesets/cli": "^2.30.0",
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
-    "@pandacss/dev": "^1.9.0",
+    "@microsoft/api-extractor": "^7.57.6",
     "@rsbuild/core": "2.0.0-beta.8",
     "@rsbuild/plugin-react": "^1.4.6",
     "@rslib/core": "^0.20.0",
@@ -154,17 +132,29 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "rsbuild-plugin-workspace-dev": "^0.1.4",
-    "storybook": "^10.2.19",
+    "storybook": "^10.5.6",
     "storybook-addon-rslib": "^3.3.2",
     "storybook-react-rsbuild": "^3.3.2",
+    "styled-components": "^6.1.19",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": ">=19",
-    "react-dom": ">=19"
+    "react-dom": ">=19",
+    "styled-components": ">=6"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.0.0",
-    "@hugeicons/react": "^1.1.6"
+    "@hugeicons/react": "^1.1.6",
+    "@zag-js/checkbox": "1.43.0",
+    "@zag-js/popover": "1.43.0",
+    "@zag-js/radio-group": "1.43.0",
+    "@zag-js/react": "1.43.0",
+    "@zag-js/scroll-area": "1.43.0",
+    "@zag-js/select": "1.43.0",
+    "@zag-js/switch": "1.43.0",
+    "@zag-js/tabs": "1.43.0",
+    "@zag-js/toast": "1.43.0",
+    "motion": "^13.0.0"
   }
 }
