@@ -121,6 +121,6 @@ describe('Input', () => {
     expect(input).toHaveStyle(
       'background: linear-gradient(180deg, #fffaf5 0%, #fffaf5 100%)',
     );
-    expect(input).toHaveStyle('border-color: #17204d');
+    expect(input).toHaveStyle('border: 0');
   });
 });

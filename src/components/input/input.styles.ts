@@ -68,11 +68,16 @@ export const StyledInputLabel = styled.label`
 `;
 
 export const StyledInputControl = styled.input`
+  --input-shadow-ring: var(--input-navy);
+  --input-shadow-drop: var(--input-navy);
+  --input-shadow-glow: color-mix(in srgb, var(--input-navy) 14%, var(--input-paper));
+  --input-focus-ring: var(--input-sky);
+  --input-focus-glow: color-mix(in srgb, var(--input-sky) 34%, transparent);
   appearance: none;
   background: linear-gradient(180deg, var(--input-paper) 0%, var(--input-paper) 100%);
-  border: 0.18rem solid var(--input-navy);
+  border: 0;
   border-radius: 1.1rem;
-  box-shadow: 0 0.3rem 0 var(--input-navy), 0 0.55rem 1rem color-mix(in srgb, var(--input-navy) 14%, var(--input-paper));
+  box-shadow: inset 0 0 0 0.18rem var(--input-shadow-ring), 0 0.3rem 0 var(--input-shadow-drop), 0 0.55rem 1rem var(--input-shadow-glow);
   box-sizing: border-box;
   color: var(--input-ink);
   display: block;
@@ -85,8 +90,8 @@ export const StyledInputControl = styled.input`
   min-width: min(18rem, calc(100vw - 2rem));
   outline: none;
   padding: 0.7rem 1.1rem;
-  transition: background-color 180ms ease, border-color 180ms ease,
-    box-shadow 180ms ease, transform 180ms ease;
+  transition: background-color 180ms ease, box-shadow 180ms ease,
+    transform 180ms ease;
   width: 100%;
 
   &::placeholder {
@@ -102,41 +107,48 @@ export const StyledInputControl = styled.input`
 
   &:focus-visible {
     background: linear-gradient(180deg, var(--input-paper) 0%, color-mix(in srgb, var(--input-accent) 42%, var(--input-paper)) 100%);
-    outline: 0.16rem solid var(--input-navy);
-    outline-offset: 0.25rem;
+    box-shadow: inset 0 0 0 0.18rem var(--input-focus-ring), 0 0.3rem 0 var(--input-shadow-drop), 0 0 0 0.2rem var(--input-focus-glow), 0 0.65rem 1.1rem var(--input-shadow-glow);
   }
 
   &[data-variant='border'] {
     background: linear-gradient(180deg, var(--input-paper) 0%, var(--input-paper) 100%);
-    border-color: var(--input-navy);
-    box-shadow: 0 0.3rem 0 var(--input-navy), 0 0.55rem 1rem color-mix(in srgb, var(--input-navy) 14%, var(--input-paper));
+    box-shadow: inset 0 0 0 0.18rem var(--input-shadow-ring), 0 0.3rem 0 var(--input-shadow-drop), 0 0.55rem 1rem var(--input-shadow-glow);
     color: var(--input-ink);
   }
 
   &[data-variant='border']:hover:not(:disabled) {
     background: linear-gradient(180deg, var(--input-paper) 0%, color-mix(in srgb, var(--input-accent) 38%, var(--input-paper)) 100%);
-    border-color: var(--input-navy);
     transform: translateY(-0.12rem);
   }
 
   &[data-variant='border']:focus-visible {
     background: linear-gradient(180deg, var(--input-paper) 0%, color-mix(in srgb, var(--input-accent) 42%, var(--input-paper)) 100%);
-    outline: 0.16rem solid var(--input-navy);
-    outline-offset: 0.25rem;
+    box-shadow: inset 0 0 0 0.18rem var(--input-focus-ring), 0 0.3rem 0 var(--input-shadow-drop), 0 0 0 0.2rem var(--input-focus-glow), 0 0.65rem 1.1rem var(--input-shadow-glow);
+  }
+
+  &[data-status='success'] {
+    --input-shadow-ring: var(--input-success);
+    --input-shadow-drop: var(--input-success);
+    --input-shadow-glow: color-mix(in srgb, var(--input-success) 16%, var(--input-paper));
+    --input-focus-ring: var(--input-success);
+    --input-focus-glow: color-mix(in srgb, var(--input-success) 34%, transparent);
+  }
+
+  &[data-status='warning'] {
+    --input-shadow-ring: var(--input-warning);
+    --input-shadow-drop: var(--input-warning);
+    --input-shadow-glow: color-mix(in srgb, var(--input-warning) 16%, var(--input-paper));
+    --input-focus-ring: var(--input-warning);
+    --input-focus-glow: color-mix(in srgb, var(--input-warning) 34%, transparent);
   }
 
   &[aria-invalid='true'],
   &[data-status='danger'] {
-    border-color: var(--input-danger);
-    box-shadow: 0 0.3rem 0 var(--input-danger-shadow), 0 0.55rem 1rem color-mix(in srgb, var(--input-danger-shadow) 16%, var(--input-paper));
-  }
-
-  &[data-status='success'] {
-    border-color: var(--input-success);
-  }
-
-  &[data-status='warning'] {
-    border-color: var(--input-warning);
+    --input-shadow-ring: var(--input-danger);
+    --input-shadow-drop: var(--input-danger-shadow);
+    --input-shadow-glow: color-mix(in srgb, var(--input-danger-shadow) 16%, var(--input-paper));
+    --input-focus-ring: var(--input-danger);
+    --input-focus-glow: color-mix(in srgb, var(--input-danger) 34%, transparent);
   }
 
   &:disabled {

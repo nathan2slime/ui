@@ -40,6 +40,11 @@ const apiDocTsconfigMap = Object.keys(apiDocEntries).reduce<
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: '@nathan3boss/ui',
+  description:
+    'Composable React components with accessible primitives, semantic tokens, and typed subpath exports.',
+  icon: '/logo.svg',
+  logo: '/logo.svg',
+  logoText: '@nathan3boss/ui',
   lang: 'en',
   themeConfig: {
     darkMode: false,

@@ -1,9 +1,9 @@
 ---
 pageType: home
 hero:
-  name: '^^'
-  text: Composable React UI for actions and forms
-  tagline: Accessible Button and Select primitives with semantic theme tokens for modern React apps.
+  name: '@nathan3boss/ui'
+  text: Composable React components with a polished default system
+  tagline: Accessible primitives for actions, forms, overlays, feedback, and scrollable surfaces, designed around semantic tokens and typed subpath exports.
   actions:
     - theme: brand
       text: Quick Start
@@ -12,45 +12,50 @@ hero:
       text: Components
       link: /components/
 features:
-  - title: Composition First
-    details: Select keeps its related parts explicit and reusable through a compound component API.
-  - title: Semantic Tokens
-    details: Components are styled from semantic color tokens so you can customize palettes without rewriting component code.
-  - title: Typed API Surface
-    details: Components and hooks are exported with generated API docs and examples.
+  - title: Compose The Parts You Need
+    details: Build from focused primitives like Button, Select, Popover, Tabs, Toast, and ScrollArea instead of adopting a heavy app framework.
+  - title: Theme With Intent
+    details: Components use semantic color, radius, spacing, and state tokens so product styling stays consistent without rewriting internals.
+  - title: Typed And Documented
+    details: Every public entry point ships through explicit subpath exports with generated API references and practical examples.
 ---
 
 # Overview
 
-`@nathan3boss/ui` is a React component library with practical action and form
-controls plus a default color system that works out of the box.
+`@nathan3boss/ui` is a React component library for building practical product
+interfaces with less glue code. It gives you accessible controls, predictable
+composition patterns, and a warm default theme that can be customized through
+CSS variables.
 
 ## Start Here
 
-- New to the library: go to [Get Started](/get-started.html) for installation and import patterns.
-- Building forms: start with [Select](/components/select.html).
-- Building actions: see [Button](/components/button.html).
-- Configuring application-level tokens: see [Theme](/components/theme.html).
-- Importing the library: use the subpath exports documented in [Get Started](/get-started.html).
+- New to the library: install it and wire the theme in [Get Started](/get-started.html).
+- Building actions: start with [Button](/components/button.html).
+- Building forms: combine [Input](/components/input.html), [Select](/components/select.html), [Checkbox](/components/checkbox.html), [RadioGroup](/components/radio-group.html), and [Switch](/components/switch.html).
+- Adding interaction layers: use [Popover](/components/popover.html), [Tabs](/components/tabs.html), [Toast](/components/toast.html), and [ScrollArea](/components/scroll-area.html).
+- Customizing the visual language: configure app-level tokens in [Theme](/components/theme.html).
 
 ## What You Get
 
-- Accessible primitives built on native HTML semantics where possible.
-- Composition-friendly APIs instead of large all-in-one components.
-- Semantic token styling with a warm default palette and app-level CSS variable overrides.
-- ESM-first package exports for modern React environments.
-- Generated API references for components and public types.
+- Accessible primitives that lean on native HTML semantics and Zag state machines where they add real interaction value.
+- Composition-friendly APIs that keep labels, triggers, controls, items, and content explicit.
+- Semantic token styling with a warm default palette, clear interaction states, and app-level CSS variable overrides.
+- ESM-first package exports for modern React environments, with tree-shakeable subpaths for each component.
+- Live examples and generated API references for components, hooks, stores, and public types.
 
 ## Recommended Reading Path
 
 1. [Get Started](/get-started.html)
 2. [Button](/components/button.html)
-3. [Select](/components/select.html) and [Theme](/components/theme.html)
+3. [Input](/components/input.html) and [Select](/components/select.html)
+4. [Popover](/components/popover.html), [Tabs](/components/tabs.html), and [Toast](/components/toast.html)
+5. [Theme](/components/theme.html)
 
 ## Public Exports
 
 - Actions: `@nathan3boss/ui/button`
-- Forms: `@nathan3boss/ui/select`
+- Forms: `@nathan3boss/ui/input`, `@nathan3boss/ui/select`, `@nathan3boss/ui/checkbox`, `@nathan3boss/ui/radio-group`, and `@nathan3boss/ui/switch`
+- Surfaces and feedback: `@nathan3boss/ui/popover`, `@nathan3boss/ui/scroll-area`, `@nathan3boss/ui/tabs`, and `@nathan3boss/ui/toast`
 - Theming: `@nathan3boss/ui` and `@nathan3boss/ui/theme`
 
 ## API Reference
